@@ -1,35 +1,3 @@
-def merge_sort(A):
-    n = len(A)
-    if n > 1:
-        m = n // 2
-        L = A[:m]
-        R = A[m:]
-        merge_sort(L)
-        merge_sort(R)
-        merge(L,R,A)
-
-# ekki endurkvæmt
-def merge(L,R,A):
-    i = j = k = 0
-    while i < len(L) and j < len(R):
-        if L[i] < R[j]: 
-            A[k] = L[i] 
-            i+=1
-        else: 
-            A[k] = R[j] 
-            j+=1
-        k+=1
-        
-        while i < len(L): 
-            A[k] = L[i] 
-            i+=1
-            k+=1
-          
-        while j < len(R): 
-            A[k] = R[j] 
-            j+=1
-            k+=1
-
 
 ### Önnur útfærlsa sem virkar
 def mergeSort(alist):
@@ -73,7 +41,7 @@ def merge(alist, lefthalf, righthalf):
 
     print("Merging ",alist)
 
-alist = [54,26,93,17,77,31,44,55,20]
+alist = [7,4,5,1,2,4,7,9]
 mergeSort(alist)
 print(alist)
 
