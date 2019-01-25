@@ -1,3 +1,63 @@
+# Hd3.4
+# Notkun:   b = h3d3(A)
+# Fyrir:    A er listi af lengd n
+# Gildi:    b er True ef A inniheldur meira en n/4 eins stök
+#           b er því ávalt True ef n < 4
+def h3d3(A):
+    b0 = False
+    n = len(A)
+    m = n/4
+    print("A er", A)
+    print("Lengd A er", n)
+    print("Þurfum meira en", m, "eins stök") 
+    BE = [None,None,None]
+    BC = [0,0,0]
+    # Tími O(9n)
+    for a in A:
+        # b er satt ef ekki búið að gera neitt við a
+        b = True
+        # Gættum gert: if None in BC
+        # Hækka teljara staksins ef það er í BE. Tími O(3)
+        # hér er jafngilt/betra: if a in BC
+        for i in range(3):
+            if BE[i] == a:
+                BC[i] += 1
+                b = False
+                break
+        if b: # hér er jafngilt/betra: elif 0 in BC
+        # Setja a í BE ef það er laust pláss. Tími O(3)
+            for i in range(3):
+                if BC[i] == 0:
+                    BE[i] = a
+                    BC[i] = 1
+                    b = False
+                    break
+        if b:
+        # Ef a hvorki í BE né laust pláss:
+            for j in range(3):
+                BC[j] -= 1
+    # Teljum raunverulegan fjölda hvers mögulegs staks, timi O(3n)
+    for e in BE:
+        count = 0
+        for a in A:
+            if e == a:
+                count += 1
+        b0 = count > m
+        if b0:
+            print("A inniheldur", count, "eintök af stakinu", e)
+            return b0
+    print("A inniheldur ekki meira en", m, "eintök af neinu staki") 
+    return b0
+    
+A = [[1],[1,2],[1,2,3],[1,2,3,4],
+    ['a','b'],['string','strong','strung','strong'],
+    [1,2,3,4,7,6,5,4,4]]
+for a in A:
+    h3d3(a)
+    print()
+
+    
+
 # Hd3.5
 def factorial(n):
     if n==0:
