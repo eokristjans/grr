@@ -1,3 +1,66 @@
+########## GrR Heimadæmi 4 ##########
+##### HD4.3 Hjálparfall, skilar afriti af listanum L
+def copyList(L):
+    cL = []
+    for l in L:
+        cL.append(l)
+    return cL
+
+##### HD4.3b
+# Notkun:   maxWeight = WeightOfSubsetSums(X,W,T,wsf,k,w)
+# Fyrir:    X[1..n], W[1..n] eru heiltölulistar
+#           T (jákvæð), wsf eru heiltölur
+#           k=[0], w=[float('-inf')] í upphafi
+# Eftir:    X og W haldast hönd í hönd.
+#           maxWeight er hæsta summa þeirra talna í W[j]
+#           þar sem sum(X[i])=T
+#   maxWeight=float('-inf') ef ekkert undirmengi X hefur summuna T
+def WeightOfSubsetSums(X,W,T,wsf,k,w):
+    if T == 0:
+        w.append(wsf)
+        k[0] += 1
+    elif T<0 or len(X)==0:
+        return
+    else:
+        Xn = X.pop()
+        Wn = W.pop()
+        print(Wn)
+        cX1 = copyList(X)
+        cX2 = copyList(X)
+        cW1 = copyList(W)
+        cW2 = copyList(W)
+        WeightOfSubsetSums(cX1,cW1,T-Xn,wsf+Wn,k,w)
+        WeightOfSubsetSums(cX2,cW2,T,wsf,k,w)
+    return max(w)
+
+k = [0]
+w = [float('-inf')]
+A = [1,3,4]
+W = [1,1,1]
+maxWeight = WeightOfSubsetSums(A,W,4,0,k,w)
+print(maxWeight) #$ 2
+
+##### GrR HD4.3a
+# Notkun:   a = NumberOfSubsetSums(X,T,k):
+# Fyrir:    X[1..n] er heiltölulisti, T er jákvæð heiltala
+#           k=[0] í upphafi
+# Eftir:    a er fjöldi undirmengja talnanna úr X sem hafa mengjasummuna T
+def NumberOfSubsetSums(X,T,k):
+    if T == 0:
+        k[0] += 1
+    elif T<0 or len(X)==0:
+        return
+    else:
+        Xn = X.pop()
+        cX1 = copyList(X)
+        cX2 = copyList(X)
+        NumberOfSubsetSums(cX1,T-Xn,k)
+        NumberOfSubsetSums(cX2,T,k)
+    return k[0]
+
+
+
+########## GrR Heimadæmi 3 ##########
 # Hd3.4
 # Notkun:   b = h3d3(A)
 # Fyrir:    A er listi af lengd n
