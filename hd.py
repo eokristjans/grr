@@ -1,3 +1,141 @@
+'''##### GrR Heimadaemi 5 - Dæmi 2 #####'''
+# Import'um orðalistann og gerum óbreytanlegan
+ordalisti = [line.rstrip('\n') for line in open('ordalisti.txt')]
+ordalisti = tuple(ordalisti)
+
+def IsWord(s):
+    return s in ordalisti
+
+
+def Splittable(A,n):
+    SpTable[n] = True
+    for i in range(n-1,-1,-1):
+        SpTable[i] = False  # mætti sjálfsagt sleppa
+        for j in range(i,n):
+            if IsWord(A[i:j]) and SpTable[j+1]:
+                SpTable[i] = True
+    return SpTable[0]
+
+
+A = 'BOTHEARTHANDSATURNSPIN'.lower()
+n = len(A)
+SpTable = []
+for i in range(n+1):
+    SpTable.append(False)
+print('Orðið:', A, 'er splittable:', Splittable(A,n))
+
+A0 = 'BOTHEARTHANDSATURNSPI'.lower()
+n0 = len(A0)
+SpTable = []
+for i in range(n+1):
+    SpTable.append(False)
+print('Orðið:', A0, 'er splittable:', Splittable(A0,n0))
+
+
+'''##### GrR Heimadaemi 5 - Dæmi 2 #####'''
+#### Skoða síðar
+def CountSplittable(A,n):
+    SpTable[n] = 1
+    for i in range(n-1,-1,-1):
+        SpTable[i] = 0  # mætti sjálfsagt sleppa
+        for j in range(i,n):
+            if IsWord(A[i:j]) and SpTable[j+1]>0:
+                SpTable[i] += SpTable[j+1]
+    return SpTable[0]
+
+A1 = 'BOTHEARTHANDSATURNSPIN'.lower()
+n1 = len(A1)
+SpTable = []
+for i in range(n+1):
+    SpTable.append(0)
+print('Orðið:', A1, 'er CountSplittable:', CountSplittable(A1,n1))
+
+
+
+
+'''##### GrR Heimadæmi 5 - Dæmi 1 #####'''
+def IterHalfFibo(n):
+    a=[0,1]     # Leyfum a[0] að vera 0 svo vísar séu réttir m.v. odda- og sléttar tölur.
+    for i in range(2,n+1):
+        if i%2==0:
+            ai=a[i//2]
+        else:
+            ai=a[i-1]+a[i-2]
+        a.append(ai)
+    return a[n]
+
+ihf1 = IterHalfFibo(100)
+
+'''
+Þurfum alltaf síðustu tvö stökin í rununni, og þurfum fyrstu
+n/2, en megum eyða staki með vísi v þegar i/2 > v
+'''
+
+# Virkar brusulega. Lykkja að neðan sem virkar þó
+def IterHalfFibo2(n):
+    if n < 12:
+        return IterHalfFibo(n)
+    a = [2,1]
+    nHalf = n//2 + n%2
+    for i in range(5,nHalf):
+        if i%2==0:
+            a.append(a.pop(0))
+        else:
+            a.append(a[len(a)-2]+a[len(a)-1])
+    # Seinni hluti, hættum að geyma óþarfa stök
+    prev, curr = a[len(a)-2], a[len(a)-1]
+    for i in range(nHalf,n+1):
+        if i%2==0:
+            try:
+                next1 = a.pop(0)
+            except IndexError:
+                break
+        else:
+            next1 = prev + curr
+        prev = curr
+        curr = next1
+    return next1
+
+
+for i in range(1,20):
+    print(i," ",IterHalfFibo2(i), " ", IterHalfFibo2(i)==ihf[i-1])
+
+ihf = [1, 1, 2, 1, 3, 2, 5, 1, 6, 3, 9, 2, 11, 5, 16, 1,
+    17, 6, 23, 3, 26, 9, 35, 2, 37, 11, 48, 5, 53, 16,
+    69, 1, 70, 17, 87, 6, 93, 23, 116, 3, 119, 26, 145,
+    9, 154, 35, 189, 2, 191, 37, 228, 11, 239, 48, 287,
+    5, 292, 53, 345, 16, 361, 69, 430, 1, 431, 70, 501, 
+    17, 518, 87, 605, 6, 611]
+print(len(ihf))
+
+
+'''#### Virkar! ####'''
+n = len(ihf)
+nhalf = n//2 + n%2
+a=[2,1]
+for i in range(5,nhalf):
+    if i%2==0:
+        a.append(a.pop(0))
+    else:
+        a.append(a[len(a)-2]+a[len(a)-1])
+    print("ihf", i, ": ", a[len(a)-1], " ", a[len(a)-1]==ihf[i-1])  # a[len(a)-1]
+prev, curr = a[len(a)-2], a[len(a)-1]
+for i in range(nhalf,n+1):
+    if i%2==0:
+        try:
+            next1 = a.pop(0)
+        except IndexError:
+            break
+    else:
+        next1 = prev + curr
+    prev = curr
+    curr = next1
+    print("ihf",i, ": ", next1, " ", next1==ihf[i-1])       # next1
+print("geymd stök:", len(a))
+
+
+
+
 ########## GrR Heimadæmi 4 ##########
 ##### HD4.3 Hjálparfall, skilar afriti af listanum L
 def copyList(L):
