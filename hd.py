@@ -1,19 +1,95 @@
-'''##### GrR Heimadaemi 5 - Dæmi 2 #####'''
+'''##### GrR Heimadaemi 5 #####'''
 # Import'um orðalistann og gerum óbreytanlegan
 ordalisti = [line.rstrip('\n') for line in open('ordalisti.txt')]
+ordalisti.append('bot')
 ordalisti = tuple(ordalisti)
 
 def IsWord(s):
     return s in ordalisti
 
 
-def Splittable(A,n):
-    SpTable[n] = True
-    for i in range(n-1,-1,-1):
+'''##### GrR Heimadaemi 5 - Dæmi 3a #####'''
+def CountSplittable2(AA,BB,nn):
+    CountTable[nn] = 1
+    for i in range(nn-1,-1,-1):
+        CountTable[i] = 0  # mætti sjálfsagt sleppa
+        for j in range(i,nn):
+            if IsWord(AA[i:j+1]) and IsWord(BB[i:j+1]) and (CountTable[j+1] > 0):
+                CountTable[i] += CountTable[j+1]
+    print(CountTable)
+    return CountTable[0]
+
+
+E = 'BOTHEARTHANDSATURNSPIN'.lower()
+F = 'PINSTARTRAPSANDRAGSLAP'.lower()
+m = len(E)
+CountTable = []
+for i in range(m+1):
+    CountTable.append(0)
+print('Orðin:', A, 'og', B, 'eru splittable á', CountSplittable2(A,B,n), 'mismunandi vegu.')
+
+print(CountTable)
+for c in range(m):
+    if CountTable[c] == 2:
+        for cc in range(c+1,m):
+            if CountTable[cc] == 2:
+                print(E[c:cc])
+                print(F[c:cc])
+    
+
+''' Þarf að gera þetta fylki tvívítt'''
+print(IsWord('st'))
+
+
+
+'''##### GrR Heimadaemi 5 - Dæmi 2 #####'''
+def Splittable2(AA,BB,nn):
+    SpTable[nn] = True
+    for i in range(nn-1,-1,-1):
         SpTable[i] = False  # mætti sjálfsagt sleppa
-        for j in range(i,n):
-            if IsWord(A[i:j]) and SpTable[j+1]:
+        for j in range(i,nn):
+            if IsWord(AA[i:j+1]) and IsWord(BB[i:j+1]) and SpTable[j+1]:
                 SpTable[i] = True
+                print(AA[i:j+1], ' ', BB[i:j+1])
+    return SpTable[0]
+
+E = 'BOTHEARTHANDSATURNSPIN'.lower()
+F = 'PINSTARTRAPSANDRAGSLAP'.lower()
+m = len(E)
+SpTable = []
+for i in range(m+1):
+    SpTable.append(False)
+print('Orðin:', A, 'og', B, 'eru splittable:', Splittable2(A,B,m))
+
+
+
+'''##### GrR Heimadaemi 5 - Dæmi 3a #####'''
+def CountSplittable(AA,nn):
+    CountTable[nn] = 1
+    for i in range(nn-1,-1,-1):
+        CountTable[i] = 0  # mætti sjálfsagt sleppa
+        for j in range(i,nn):
+            if IsWord(AA[i:j+1]) and (CountTable[j+1] > 0):
+                CountTable[i] += CountTable[j+1]
+    return CountTable[0]
+
+A = 'ARTISTOIL'.lower()
+n = len(A)
+CountTable = []
+for i in range(n+1):
+    CountTable.append(0)
+print('Orðið', A, 'er splittable á ', CountSplittable(A,n), 'mismunandi vegu.')       # True
+
+
+'''##### GrR Heimadaemi 5 - Dæmi 2 #####'''
+def Splittable(AA,nn):
+    SpTable[nn] = True
+    for i in range(nn-1,-1,-1):
+        SpTable[i] = False  # mætti sjálfsagt sleppa
+        for j in range(i,nn):
+            if IsWord(AA[i:j+1]) and SpTable[j+1]:
+                SpTable[i] = True
+                print(AA[i:j+1])
     return SpTable[0]
 
 
@@ -29,29 +105,13 @@ n0 = len(A0)
 SpTable = []
 for i in range(n+1):
     SpTable.append(False)
-print('Orðið:', A0, 'er splittable:', Splittable(A0,n0))
+print('Orðið', A0, 'er splittable:', Splittable(A0,n0))
 
 
-'''##### GrR Heimadaemi 5 - Dæmi 2 #####'''
-#### Skoða síðar
-def CountSplittable(A,n):
-    SpTable[n] = 1
-    for i in range(n-1,-1,-1):
-        SpTable[i] = 0  # mætti sjálfsagt sleppa
-        for j in range(i,n):
-            if IsWord(A[i:j]) and SpTable[j+1]>0:
-                SpTable[i] += SpTable[j+1]
-    return SpTable[0]
-
-A1 = 'BOTHEARTHANDSATURNSPIN'.lower()
-n1 = len(A1)
-SpTable = []
-for i in range(n+1):
-    SpTable.append(0)
-print('Orðið:', A1, 'er CountSplittable:', CountSplittable(A1,n1))
-
-
-
+S = 'both earth and sat urns pi'
+SS = S.split(' ')
+for s in SS:
+    print(IsWord(s))
 
 '''##### GrR Heimadæmi 5 - Dæmi 1 #####'''
 def IterHalfFibo(n):
