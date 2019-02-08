@@ -1,4 +1,139 @@
 '''##### GrR Heimadaemi 5 #####'''
+
+'''##### GrR Heimadaemi 5 - Dæmi 5 #####'''
+def MaxScore2(CC,MM):
+    nn = len(CC)
+    lastScore = score = 0
+    for i in range(nn):
+        if C[i] == MM:
+            score = lastScore + 1
+        else:
+            swap = 0
+            for j in range(i+1,i+4):
+                if j >= nn:
+                    break
+                elif C[i]==C[j]:
+                    swap += 1
+                else:
+                    swap -= 1
+            if swap > 0:
+                MM = C[i]
+                score = last - 1
+            else:
+                score = lastScore
+        lastScore = score
+    return lastScore
+
+
+S = 'A A A A A A A A'
+C = S.split(' ')
+n = len(C)
+
+Scores = [0]
+topScore3 = MaxScore2(C,'A')
+  
+
+
+def MaxScore(CC,MM):
+    nn = len(CC)
+    for i in range(nn):
+        if C[i] == MM:
+            Scores[i+1] = Scores[i] + 1
+        else:
+            swap = 0
+            for j in range(i+1,i+4):
+                if j >= nn:
+                    break
+                elif C[i]==C[j]:
+                    swap += 1
+                else:
+                    swap -= 1
+            if swap > 0:
+                MM = C[i]
+                Scores[i+1] = Scores[i] - 1
+            else:
+                Scores[i+1] = Scores[i]
+    return Scores[nn]
+
+
+S = 'A B B C D B A A B D'
+C = S.split(' ')
+n = len(C)
+
+Scores = [0]
+for i in range(n):
+    Scores.append(0)
+topScore2 = MaxScore(C,'A')
+    
+'''
+def MaxScore(CC,MM):
+    nn = len(CC)
+    for i in range(nn):
+        for j in range(i+1,i+4):
+            if CC[j]==C[i]:
+                swap +=1
+        Scores = 
+    
+    
+    
+    for i in range(nn):
+        if MM == C[i]:
+            swap = Scores[i] + 1
+        else:
+            swap = Scores[i] - 1
+        Keep[i] = Keep[i-1]
+    
+    
+    
+    nn = len(CC)
+    for i in range(nn):
+        Scores[i][0]=0      # Base Cases
+    for j in range(1,nn):
+        for i in range(j):
+            if MM==C[j]:
+                swap = 1 + Scores[j-1][]
+    
+    
+    for i in range(n-1,-1,-1):
+        if MM == C[ii]:
+            Scores[i] = 1 + Scores[i+1]
+        else:
+            Scores[i]
+            
+    return Scores[0]
+
+ScoresA
+ScoresB
+ScoresD
+'''
+
+
+topScoreBaby2 = HigherScore2()
+
+
+
+def HigherScore(ii,MM):
+    if ii >= n:
+        return 0
+    if MM == C[ii]:
+        return 1+HigherScore(ii+1,MM)
+    else:
+        return max( HigherScore(ii+1,C[ii])-1,HigherScore(ii+1,MM) )
+
+
+S = 'A B B C D B A A B D A'
+C = S.split(' ')
+n = len(C)
+M = 'A'
+topScoreBaby = HigherScore(0,M)
+
+
+
+
+
+
+
+
 # Import'um orðalistann og gerum óbreytanlegan
 ordalisti = [line.rstrip('\n') for line in open('ordalisti.txt')]
 ordalisti.append('bot')
