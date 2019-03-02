@@ -1,3 +1,63 @@
+'''######################### GrR Heimadaemi 6 #########################'''
+##### GrR Hd6-2  #####
+
+
+
+
+##### GrR Hd6-1 OptimalBST #####
+import numpy as np
+
+f = [0.1, 0.4, 0.2, 0.1, 0.05, 0.05, 0.1]
+n = len(f)
+F = myO(n)
+OptCost = myO(n) 
+OptR = myO(n) 
+
+
+def myO(nn):
+    O = []
+    for i in range(nn):
+        O.append([])
+        for j in range(nn):
+            O[i].append(0)
+    return O
+
+def InitF(ff):
+    for i in range(n):
+    # sleppum því að núllstilla núllfylki
+        for k in range(i,n):
+            F[i][k] = F[i][k-1]+ff[k]
+
+def ComputeOptCost(i,k):
+    OptCost[i][k] = np.inf
+    for r in range(i,k):
+        tmp = OptCost[i][r-1] + OptCost[r+1][k]
+        if OptCost[i][k] > tmp:
+            OptCost[i][k] = tmp
+            OptR[i][k] = r
+    OptCost[i][k] += F[i][k]
+
+def OptimalBST(ff):
+    InitF(f)
+    # sleppum því að núllstilla núllfylki
+    for d in range(1,n):
+        for i in range(n-d):
+            ComputeOptCost(i,i+d)
+    return OptCost[0][n-1]
+
+
+hd6_1 = OptimalBST(f)
+r0 = OptR[0][n-1]
+r1v = OptR[0][r0-1]
+r1h = OptR[r0+1][n-1]
+
+print('Stak', r0,'er rótin')
+print('Stak', r1v,'er vinstra barn rótarinnar')
+print('Stak', r1h,'er hægra barn rótarinnar')
+
+print(np.array(OptR))
+
+
 '''##### GrR Heimadaemi 5 #####'''
 
 '''##### GrR Heimadaemi 5 - Dæmi 5 #####'''
