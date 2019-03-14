@@ -52,93 +52,13 @@ class Tree:
             self.right.PrintTree()
 
 
-root = Tree(12)
-root.insert(6)
-root.insert(14)
-root.insert(3)
-# print(root.contains(7))
-# print(root.contains(14))
-
-root.PrintTree()
-root.contains(root.data)
-
-
-
-"""
-import random as random
-
-class TreapNode():
-    # Smiður
-    def __init__(self, data, parent = None):
-        self.data = data
-        self.priority = random.random()
-        self.parent = parent
-        self.left = None
-        self.right = None
-        print('Node created')
-#        self.balance()
-
-
-class Treap():
-    # Smiður
-    def __init__(self):
-        self.root = None
-
-    # Uppfletting    
-    def contains(self, data, r = None):
-        if r is None:
-            if self.root is None:
-                print('leit: engin rot')
-                return False
-            r = self.root
-        if data < r.data:
-            if r.left is None:
-                return False
-            return self.contains(data, r.left)
-        elif data > r.data:
-            if r.right is None:
-                return False
-            return self.contains(data, r.right)
-        else:
-#           self.printNodeInfo()
-            return True
-
-    # innsetning
-    def insert(self, data, r = None):
-        if r is None:
-            if self.root is None:
-                self.root = TreapNode(data)
-                return
-            else:
-                r = self.root
-                print(r.data)
-        if data < r.data:
-            if r.left is None:
-                r.left = TreapNode(data, r)
-            else:
-                self.insert(data, r.left)
-        elif data > r.data:
-            if r.right is None:
-                r.right = TreapNode(data, r)
-            else:
-                self.insert(data, r.right)
-        else: # data == r.data
-            return
-
-   
-        
-treap = Treap()
-treap.contains(2)
-treap.contains(3)
-treap.insert(2)
-treap.insert(3)
-
-treap.insert(-4)
-
-for i in range(10):
-    treap.insert(i)    
-
-for i in range(-5,15):
-    print(str(i) + ' ' + str(treap.contains(i)))
-
-"""
+def main():
+    root = Tree(12)
+    root.insert(6)
+    root.insert(14)
+    root.insert(3)
+    print(root.contains(7))
+    print(root.contains(14))
+    
+    root.PrintTree()
+    root.contains(root.data)

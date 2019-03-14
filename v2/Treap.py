@@ -5,11 +5,9 @@ class TreapNode():
     def __init__(self, data, parent = None):
         self.data = data
         self.priority = random.random()
-        print(self.priority)
         self.parent = parent
         self.left = None
         self.right = None
-        print('Node created')
 
 
 class Treap():
@@ -42,7 +40,6 @@ class Treap():
                 return
             else:
                 r = self.root
-                print(r.data)
         if data < r.data:
             if r.left is None:
                 r.left = TreapNode(data, r)
@@ -99,12 +96,11 @@ class Treap():
         s.left = p
 
     
-treap = Treap()
-
-
-for i in range(-1000,1000):
-    treap.insert(2*i)
+def main():
+    treap = Treap()
+    for i in range(-1000,1000):
+        treap.insert(2*i)
     
-for i in range(-1001,1005):
-    if not treap.contains(i):
-        print(i)
+    for i in range(-1001,1005):
+        if not treap.contains(i):
+            print(i)
