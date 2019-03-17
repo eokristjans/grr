@@ -33,6 +33,10 @@ def ComputeFailure(P):
         j += 1
     return F
 
+print(ComputeFailure(list("abbaabba")))
+
+
+
 """ Assignment 9 """
 # Checks whether P is a sublist of T
 # T and P are lists of numbers, len(T)=n, len(P)=m
@@ -52,15 +56,15 @@ def KarpRabin(T,P):
     for i in range(m):
         p = (10*p % q) + P[i] % q
         t = (10*t % q) + T[i] % q
-    ts.append(t)
+    Ts.append(t)
     for s in range(n-m+1):
         if p == t:
             if P == T[s:s+m]:
-                return s, falseMatch, ts
+                return s, falseMatch, Ts
             falseMatch += 1
         t = (10 * (t - (sigma*T[s] % q) % q) % q) + T[s+m] % q
         Ts.append(t)
-    return -1, falseMatch, ts
+    return -1, falseMatch, Ts
     
 TTs = "1414213562373095"
 TT = [int(i) for i in TTs]
@@ -94,8 +98,9 @@ def KMP(TT,PP):
     return -1
 
 
-# Reiknar lengd samhverfra forskeyta í P.
-def ComputePalindromes(P):
+# Ákvarðar lengsta samhverfra forskeyti P
+# Byggt á KMP og ComputeFailure
+def ComputePalindrome(P):
     if P == []:
         return [-1]
     F = []
@@ -113,18 +118,18 @@ def ComputePalindromes(P):
         while j > -1 and P[i] != P[j]:
             j = F[j]
         j += 1
-    return F
+    lengdSamhverfu = min(len(P),F[len(F)-1]+1)
+    return P[:lengdSamhverfu]
 
 
-T = list("") # vinna með þetta og skoða
-cpT = ComputePalindromes(T)
-# Nú er lengd lengsta samhverfa forskeytisins:
-min(len(T), cpT[len(cpT)-1]+1)
+def main():
+    T = list("ABRARBACADABRX") # vinna með þetta og skoða
+    cpT = ComputePalindrome(T)
+    # Nú er lengd lengsta samhverfa forskeytisins:
+    print('lengsta samhverfa forskeyti listans/strengsins \n' + str(T) + '\n er ' + str(cpT))
 
-# túlka svo betur
+main()
 
-S = list("abdasgea")
-ComputePalindromes(S)
 
 
 

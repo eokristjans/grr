@@ -15,43 +15,44 @@ class Treap():
     def __init__(self):
         self.root = None
 
-    # Uppfletting    
-    def contains(self, data, r = None):
-        if r is None:
-            if self.root is None:
-                return False
-            r = self.root
+    # Uppfletting
+    def contains(self, data):
+        if self.root is None:
+            return False
+        self.__contains__(data, self.root)
+    
+    def __contains__(self, data, r):
         if data < r.data:
             if r.left is None:
                 return False
-            return self.contains(data, r.left)
+            return self.__contains__(data, r.left)
         elif data > r.data:
             if r.right is None:
                 return False
-            return self.contains(data, r.right)
+            return self.__contains__(data, r.right)
         else:
             return True
 
-    # innsetning
-    def insert(self, data, r = None):
-        if r is None:
-            if self.root is None:
-                self.root = TreapNode(data)
-                return
-            else:
-                r = self.root
+    # Innsetning
+    def insert(self, data):
+        if self.root is None:
+            self.root = TreapNode(data)
+            return
+        self.__insert__(data, self.root)
+        
+    def __insert__(self, data, r):
         if data < r.data:
             if r.left is None:
                 r.left = TreapNode(data, r)
                 self.balance(r.left)
             else:
-                self.insert(data, r.left)
+                self.__insert__(data, r.left)
         elif data > r.data:
             if r.right is None:
                 r.right = TreapNode(data, r)
                 self.balance(r.right)
             else:
-                self.insert(data, r.right)
+                self.__insert__(data, r.right)
         else: # data == r.data
             return
 
@@ -94,7 +95,6 @@ class Treap():
         s.parent = g
         p.parent = s
         s.left = p
-
     
 def main():
     treap = Treap()
@@ -104,3 +104,4 @@ def main():
     for i in range(-1001,1005):
         if not treap.contains(i):
             print(i)
+            
