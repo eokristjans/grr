@@ -8,7 +8,7 @@ from SkipList import SkipList
 from FunctionsV2 import SmidaInnsetningarLyklaLista, SmidaLeitarLyklaLista
 from FunctionsV2 import MaelaInnsetningartima, MaelaLeitartima
 from TablesV2 import TaflaLinuheiti, LeitartimaToflur, BirtaTofluHTML, BirtaToflurHTML
-from GraphsV2 import grafInnsetningartimi, grafLeitartimi
+from GraphsV2 import GrafInnsetningartimi, GrafLeitartimi
 
 
 """"""""""""""" Fjöldi mælinga """""""""""""""
@@ -161,9 +161,33 @@ BirtaToflurHTML(TaflaArangurslitillLeitartimiRadad, ns, "<i>n=</i>%d")
 
 
 
-def buaTilToflu(table,headers):
-    (tabulate(table, headers, tablefmt="html"))
+""""""""" Búa til línurit """""""""
+GrafInnsetningartimi(LinuheitiInnsetning,[IT[0], IT[2], IT[4]],
+                    [IT[1], IT[3], IT[5]], k, ns)
+for i in range(k):
+    GrafLeitartimi(LinuheitiLeit, LT[i], LT[i+1], k, ms, ns[i],
+               'Árangursrík leit í %d-staka gagnagrindum',i)
+for i in range(k):
+    GrafLeitartimi(LinuheitiLeit, LT[2*k+i], LT[2*k+i+1], k, ms, ns[i],
+               'Hálf-árangurslaus leit í %d-staka gagnagrindum', k+i)
 
+
+
+""" Before data is exported
+del(TreeS,TreeR,SkipListS,SkipListR,TreapS,TreapR)
+del(ArangurslitlirLyklar,ArangursrikirLyklar,RadadirLyklar,SlembnirLyklar)
+"""
+
+""" Export with pickle
+import pickle
+with open('50f.pickle', 'wb') as f:
+    pickle.dump([IT, LT, LinuheitiInnsetning, LinuheitiLeit, ns, ms, k] , f)
+"""
+""" Import with pickle
+import pickle
+with open('50f.pickle', 'rb') as f:
+    IT, LT, LinuheitiInnsetning, LinuheitiLeit, ns, ms, k = pickle.load(f)
+"""
 
 
 
@@ -177,30 +201,13 @@ nákvæmari á Windows stýrikerfum.
 """
 
 
-
-
-
-
-""""""""" Búa til línurit """""""""
-grafInnsetningartimi(LinuheitiInnsetning,[IT[0], IT[2], IT[4]],
-                    [IT[1], IT[3], IT[5]], k, ns)
-for i in range(k):
-    grafLeitartimi(LinuheitiLeit, LT[i], LT[i+1], k, ms, ns[i],
-               'Árangursrík leit í %d-staka gagnagrindum',i)
-for i in range(k):
-    grafLeitartimi(LinuheitiLeit, LT[2*k+i], LT[2*k+i+1], k, ms, ns[i],
-               'Hálf-árangurslaus leit í %d-staka gagnagrindum', k+i)
-
-
-
-""" Before data is exported
-del(TreeS,TreeR,SkipListS,SkipListR,TreapS,TreapR)
-del(ArangurslitlirLyklar,ArangursrikirLyklar,RadadirLyklar,SlembnirLyklar)
 """
-
-
-
-
+https://docs.python.org/3/library/time.html#time.perf_counter
+    Vert að skoða:
+time.process_time() # telur ekki svefntíma
+time.perf_counter() # telur svefntíma með
+time.thread_time()
+"""
 
 
 

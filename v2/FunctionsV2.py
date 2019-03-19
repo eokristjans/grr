@@ -30,7 +30,11 @@ def RandomVixlanir(X,n):
         X[a], X[b] = X[b], X[a]
 
 
-""" Tímamæla innsetningar """
+""" Tímamæla innsetningar    # Lýsing m.v. **k = 3**
+DSs: Listi með 3 gagnagrindum af sömu gerð
+Xs: Listi með 3 listum (af lengdum ns) með sömu gerð af röðun gagna
+Timi: Listi með 3 stökum sem halda utan um tíma sem hafa farið í sérhverja aðgerð hingað til
+"""
 def MaelaInnsetningartima(DSs, Xs, k, Timi):
     for i in range(k):
         Timi[i] += timeit.timeit("for x in Xs[i]: DSs[i].insert(x)", 
@@ -56,16 +60,3 @@ def MaelaLeitartima(DSs, Xs, ms, k, Timi):
         t += timeit.timeit("for j in range(ms[1],ms[2]): DSs[i].contains(Xs[i][j])",
                     globals=locals(), number=1)
         Timi[i][2] += t # fyrstu 400.000 leitanir
-
-
-
-"""
-https://docs.python.org/3/library/time.html#time.perf_counter
-    Vert að skoða:
-time.process_time() # telur ekki svefntíma
-time.process_time_ns() # telur ekki svefntíma
-time.perf_counter() # telur svefntíma með
-time.perf_counter_ns() # telur svefntíma með
-time.thread_time()
-time.thread_time_ns()
-"""

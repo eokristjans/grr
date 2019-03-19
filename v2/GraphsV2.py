@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def grafInnsetningartimi(LH,TIS, TIR, k, ns):
+def GrafInnsetningartimi(LH,TIS, TIR, k, ns):
     figInnsetning, axisInnsetning = plt.subplots()
     litir1 = ['green', 'darkred', 'blue']
     litir2 = ['lightgreen', 'red', 'lightblue']
@@ -41,7 +41,7 @@ def grafInnsetningartimi(LH,TIS, TIR, k, ns):
     figInnsetning.savefig('GrafInnsetningartimi.png')
 
 
-def grafLeitartimi(LH, TS, TR, k, ms, n, t, c):
+def GrafLeitartimi(LH, TS, TR, k, ms, n, t, c):
     fig, axis = plt.subplots()
     litir1 = ['green', 'darkred', 'blue']
     litir2 = ['lightgreen', 'red', 'lightblue']
@@ -64,7 +64,7 @@ def grafLeitartimi(LH, TS, TR, k, ms, n, t, c):
                     ylabel='Tími (s)',
                     title = t%n)
     
-    xs = np.arange(ms[0], ms[2]+ms[0]//2, ms[0]//2)
+    xs = np.arange(0, ms[2]+ms[0]//2, ms[0]//2)
     lg = lambda x: np.log1p(x)/20
     ys = lg(xs)
     axis.plot(xs, ys, color='black', linewidth=1)

@@ -1,7 +1,7 @@
 import random as random
 
 class TreapNode():
-    # Smiður
+    # Smiður nóðu
     def __init__(self, data, parent = None):
         self.data = data
         self.priority = random.random()
@@ -11,7 +11,7 @@ class TreapNode():
 
 
 class Treap():
-    # Smiður
+    # Smiður hrúgutrés
     def __init__(self):
         self.root = None
 
@@ -44,29 +44,29 @@ class Treap():
         if data < r.data:
             if r.left is None:
                 r.left = TreapNode(data, r)
-                self.balance(r.left)
+                self._balance(r.left)
             else:
                 self._insert(data, r.left)
         elif data > r.data:
             if r.right is None:
                 r.right = TreapNode(data, r)
-                self.balance(r.right)
+                self._balance(r.right)
             else:
                 self._insert(data, r.right)
         else: # data == r.data
             return
 
     # laga hrúguskilyrði
-    def balance(self, s):
+    def _balance(self, s):
         while s.parent is not None and s.priority < s.parent.priority:
             if s.data < s.parent.data:
-                self.rotate_right(s)
+                self._rotate_right(s)
             else: # self.data > self.parent.data
-                self.rotate_left(s)
+                self._rotate_left(s)
         if s.parent is None:
             self.root = s
          
-    def rotate_right(self, s):
+    def _rotate_right(self, s):
         p = s.parent
         g = p.parent
         if s.right is not None:
@@ -81,7 +81,7 @@ class Treap():
         p.parent = s
         s.right = p
                        
-    def rotate_left(self, s):
+    def _rotate_left(self, s):
         p = s.parent
         g = p.parent
         if s.left is not None:

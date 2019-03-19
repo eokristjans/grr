@@ -20,9 +20,14 @@ def LeitartimaToflur(L,T,ms):
 # Birtir staka töflu sem HTML Table í Jupyter Notebook
 def BirtaTofluHTML(T,H=""):
     display(HTML("<h5>" + H + "</h5>"))
-    display(HTML(tabulate.tabulate(T, tablefmt='html')))
+    display(HTML(tabulate.tabulate(T[1:3], T[0], tablefmt='html')))
     
 # Birtir lista af töflum sem HTML Table í Jupyter Notebook
 def BirtaToflurHTML(Ts,ns,H):
     for i in range(len(ns)):
         BirtaTofluHTML(Ts[i],H%ns[i])
+
+"""
+def buaTilToflu(table,headers):
+    (tabulate(table, headers, tablefmt="html"))
+"""
