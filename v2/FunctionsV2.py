@@ -1,11 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-
-@author: Erling Oskar
-"""
 import numpy as np
-import random
-import time
+import random, timeit
 
 """"""""" Búa til gögn fyrir innsetningu """""""""
 def SmidaInnsetningarLyklaLista(Ss, Rs, ns):
@@ -29,26 +23,39 @@ def SmidaLeitarLyklaLista(m, ns, k, b):
         random.shuffle(Ls[i])
     return Ls
     
-    
-"""    
-    else:
-        
-    #    print(len(Ls[i]), ':', min(Ls[i]), '-', max(Ls[i]))
-        # Add additional unsuccessful search keys
-        while len(Ls[i]) < m:
-            A = np.arange(3*ns[i]+1, 4*ns[i]+1, 1)
-            B = np.arange(-2*ns[i], -1*ns[i], 1)
-            Ls[i] = np.concatenate((Ls[i], A))
-            Ls[i] = np.concatenate((Ls[i], B))
-    #    print(len(Ls[i]), ':', min(Ls[i]), '-', max(Ls[i]))
-        random.shuffle(Ls[i])
-    return Ls
-"""
 
 def RandomVixlanir(X,n):
     for i in range(n//10):
         a, b = random.randint(0,n-1), random.randint(0,n-1)
         X[a], X[b] = X[b], X[a]
+
+
+""" Tímamæla innsetningar """
+def MaelaInnsetningartima(DSs, Xs, k, Timi):
+    for i in range(k):
+        Timi[i] += timeit.timeit("for x in Xs[i]: DSs[i].insert(x)", 
+            globals=locals(), number=1)
+
+
+""" Tímamæla leit
+Fyrir:  k er fjöldi gagnagrinda (sem á að leita í)
+        DSs er k-staka listi af gagnagrindum
+        Xs er k-staka listi af listum af lyklum
+        ms er 3ja staka talnalisti (fjöldi leitanna)
+Eftir:  Timi er listi af listum
+        Timi[i] inniheldur tímann fyrir ms[0], ms[1] og ms[2] leitanir í DSs[i]
+"""
+def MaelaLeitartima(DSs, Xs, ms, k, Timi):
+    for i in range(k): # fyrir sérhverja stærð af gagnagrind n0, n1 og n2
+        t = timeit.timeit("for j in range(ms[0]): DSs[i].contains(Xs[i][j])",
+                   globals=locals(), number=1)
+        Timi[i][0] += t # fyrstu 100.000 leitanir
+        t += timeit.timeit("for j in range(ms[0],ms[1]): DSs[i].contains(Xs[i][j])",
+                    globals=locals(), number=1)
+        Timi[i][1] += t # fyrstu 200.000 leitanir
+        t += timeit.timeit("for j in range(ms[1],ms[2]): DSs[i].contains(Xs[i][j])",
+                    globals=locals(), number=1)
+        Timi[i][2] += t # fyrstu 400.000 leitanir
 
 
 
@@ -62,54 +69,3 @@ time.perf_counter_ns() # telur svefntíma með
 time.thread_time()
 time.thread_time_ns()
 """
-""" Tímamæla innsetningar 
-    Tekur meðaltal af f mælingum
-"""
-def MaelaInnsetningartima(DSs, Xs, k, f=10):
-    Timi = []
-    for i in range(k):
-        timi = 0
-        for j in range(f):
-            start = time.clock()
-            for x in Xs[i]:
-                DSs[i].insert(x)
-            end = time.clock()
-            timi += (end-start)
-        Timi.append((timi/f))
-    return Timi
-
-""" Tímamæla leit 
-    Tekur meðaltal af f mælingum
-Fyrir:  k er fjöldi gagnagrinda (sem á að leita í)
-        DSs er k-staka listi af gagnagrindum
-        Xs er k-staka listi af listum af lyklum
-        ms er 3ja staka talnalisti (fjöldi leitanna)
-Eftir:  timi er listi af listum
-        timi[i] inniheldur tímann fyrir ms[0], ms[1] og ms[2] leitanir í DSs[i]
-"""
-def MaelaLeitartima(DSs, Xs, ms, k, f=10):
-    Timi = []
-    for i in range(k):
-        Timi.append([])
-        t = [0, 0, 0]
-        for u in range(f):
-            start = time.clock()
-            for j in range(ms[0]):
-                DSs[i].contains(Xs[i][j])
-            end = time.clock()
-            t[0] += (end-start)
-            for j in range(ms[0],ms[1]):
-                DSs[i].contains(Xs[i][j])
-            end = time.clock()
-            t[1] += (end-start)
-            for j in range(ms[1],ms[2]):
-                DSs[i].contains(Xs[i][j])
-            end = time.clock()
-            t[2] += (end-start)
-        for T in t:
-            print(T, ' ', u)
-        Timi[i].append(t[0]/f)
-        Timi[i].append(t[1]/f)
-        Timi[i].append(t[2]/f)
-    return Timi
-

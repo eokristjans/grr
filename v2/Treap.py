@@ -19,17 +19,17 @@ class Treap():
     def contains(self, data):
         if self.root is None:
             return False
-        self.__contains__(data, self.root)
+        return self._contains(data, self.root)
     
-    def __contains__(self, data, r):
+    def _contains(self, data, r):
         if data < r.data:
             if r.left is None:
                 return False
-            return self.__contains__(data, r.left)
+            return self._contains(data, r.left)
         elif data > r.data:
             if r.right is None:
                 return False
-            return self.__contains__(data, r.right)
+            return self._contains(data, r.right)
         else:
             return True
 
@@ -38,21 +38,21 @@ class Treap():
         if self.root is None:
             self.root = TreapNode(data)
             return
-        self.__insert__(data, self.root)
+        self._insert(data, self.root)
         
-    def __insert__(self, data, r):
+    def _insert(self, data, r):
         if data < r.data:
             if r.left is None:
                 r.left = TreapNode(data, r)
                 self.balance(r.left)
             else:
-                self.__insert__(data, r.left)
+                self._insert(data, r.left)
         elif data > r.data:
             if r.right is None:
                 r.right = TreapNode(data, r)
                 self.balance(r.right)
             else:
-                self.__insert__(data, r.right)
+                self._insert(data, r.right)
         else: # data == r.data
             return
 
