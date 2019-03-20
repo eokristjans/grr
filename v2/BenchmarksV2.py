@@ -8,14 +8,15 @@ from SkipList import SkipList
 from FunctionsV2 import SmidaInnsetningarLyklaLista, SmidaLeitarLyklaLista
 from FunctionsV2 import MaelaInnsetningartima, MaelaLeitartima
 from TablesV2 import TaflaLinuheiti, LeitartimaToflur, BirtaTofluHTML, BirtaToflurHTML
-from GraphsV2 import GrafInnsetningartimi, GrafLeitartimi
+from GraphsV2 import GrafInnsetningartimi, GrafLeitartimi, GrafLeitartimi_mFast
+
 
 
 """"""""""""""" Fjöldi mælinga """""""""""""""
 k = 3
-ns = [500, 2500, 5000]
+ns = [10000, 100000, 200000]
 ms = [100000, 200000, 400000]
-f = 50 # fjöldi mælinga
+f = 10 # fjöldi mælinga
 
 
 """"""""""""""" Listar undir innsetningartíma """""""""""""""
@@ -143,6 +144,30 @@ LinuheitiInnsetning = ['Fjöldi innsetninga','Tvíleitartré','Hrúgutré','Skop
 LinuheitiLeit = ['Fjöldi leita','Tvíleitartré','Hrúgutré','Skopplisti']
 
 
+
+""""""""" Búa til línurit """""""""
+GrafInnsetningartimi(LinuheitiInnsetning,[IT[0], IT[2], IT[4]],
+                    [IT[1], IT[3], IT[5]], k, ns)
+for j in range(k): # Teiknum gröf af árangursríkri leit fyrir hvert n
+    GrafLeitartimi(LinuheitiLeit, LTarangursrikurS, LTarangursrikurR, k, ms, ns,
+               'Árangursrík leit í %d-staka gagnagrindum',j,j)
+for j in range(k): # Teiknum gröf af árangurslítilli leit fyrir hvert n
+    GrafLeitartimi(LinuheitiLeit, LTarangurslitillS, LTarangurslitillR, k, ms, ns,
+               'Hálf-árangurslaus leit í %d-staka gagnagrindum', j, k+j)
+
+
+
+for j in range(k): # Teiknum gröf af árangursríkri leit fyrir n með fast m
+    GrafLeitartimi_mFast(LinuheitiLeit, LTarangursrikurS, LTarangursrikurR, k, ms, ns,
+               '%d árangursríkar leitir',j,j)
+for j in range(k): # Teiknum gröf af árangurslítilli leit fyrir n með fast m
+    GrafLeitartimi_mFast(LinuheitiLeit, LTarangurslitillS, LTarangurslitillR, k, ms, ns,
+               '%d hálf-árangurslausar leitir', j, k+j)
+
+
+
+
+
 """"""""" Búa til töflur """""""""
 TaflaInnsetningartimiSlembid = TaflaLinuheiti(LinuheitiInnsetning,[ns,IT[0],IT[2],IT[4]])
 TaflaInnsetningartimiRadad = TaflaLinuheiti(LinuheitiInnsetning,[ns,IT[1],IT[3],IT[5]])
@@ -164,35 +189,6 @@ display(HTML("<h5>" + "Gagnagrindur með <i>n</i> lyklum sem voru settir inn í 
 BirtaToflurHTML(TaflaArangurslitillLeitartimiSlembid, ns, "<i>n=</i>%d")
 display(HTML("<h5>" + "Gagnagrindur með <i>n</i> lyklum sem voru settir inn í ~hækkandi röð" + "</h5>"))
 BirtaToflurHTML(TaflaArangurslitillLeitartimiRadad, ns, "<i>n=</i>%d")
-
-
-""""""""" Búa til línurit """""""""
-GrafInnsetningartimi(LinuheitiInnsetning,[IT[0], IT[2], IT[4]],
-                    [IT[1], IT[3], IT[5]], k, ns)
-for j in range(k): # Teiknum gröf af árangursríkri leit fyrir hvert n
-    GrafLeitartimi(LinuheitiLeit, LTarangursrikurS, LTarangursrikurR, k, ms, ns,
-               'Árangursrík leit í %d-staka gagnagrindum',j,j)
-for j in range(k): # Teiknum gröf af árangurslítilli leit fyrir hvert n
-    GrafLeitartimi(LinuheitiLeit, LTarangurslitillS, LTarangurslitillR, k, ms, ns,
-               'Hálf-árangurslaus leit í %d-staka gagnagrindum', j, k+j)
-
-
-
-from GraphsV2 import GrafLeitartimi_mFast
-for j in range(k): # Teiknum gröf af árangursríkri leit fyrir n með fast m
-    GrafLeitartimi_mFast(LinuheitiLeit, LTarangursrikurS, LTarangursrikurR, k, ms, ns,
-               '%d árangursríkar leitir',j,2*k+j)
-for j in range(k): # Teiknum gröf af árangurslítilli leit fyrir n með fast m
-    GrafLeitartimi_mFast(LinuheitiLeit, LTarangurslitillS, LTarangurslitillR, k, ms, ns,
-               '%d hálf-árangurslausar leitir', j, 3*k+j)
-
-
-from GraphsV2 import GrafLeitartimi_mFast
-GrafLeitartimi_mFast(LinuheitiLeit, LTarangursrikurS, LTarangursrikurR, k, ms[2], ns,
-               '%d árangursríkar leitir',ms[2])
-
-
-print(LTarangursrikurS[0].T[2])
 
 
 

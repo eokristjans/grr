@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>v2-md.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<style>
+* {
+    max-width: 1000px;
+}
+
+img {
+    width: 49%;
+}
+
+html {
+    margin: 0 auto;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+h2 {
+    page-break-before: always;
+}
+
+.hljs {
+    page-break-inside: avoid;
+}
+</style>
+<h1 id="verkefni-iia">Verkefni IIA</h1>
+<h2 style="page-break-before: avoid">Samanburður á tímaflækju aðgerða í þremur útfærslum af lyklasöfnum</h2>
+<h3 id="h%C3%B6fundur-erling-%C3%B3skar-kristj%C3%A1nsson">Höfundur: Erling Óskar Kristjánsson</h3>
+<hr>
+<h4 id="n%C3%A1mskei%C3%B0-greining-reiknirita">Námskeið: Greining Reiknirita</h4>
+<h4 id="umsj%C3%B3narma%C3%B0ur-hj%C3%A1lmt%C3%BDr-hafsteinsson">Umsjónarmaður: Hjálmtýr Hafsteinsson</h4>
+<h4 id="stofnun-h%C3%A1sk%C3%B3li-%C3%ADslands">Stofnun: Háskóli Íslands</h4>
+<h4 id="vor-2019">Vor 2019</h4>
+<br>
+<br>
+<br>
+<i>Athugið eftirfarandi hlekk á verkefnið á html sniði ef þú vilt (það er aðeins læsilegra)</i>
+<p><a href="https://notendur.hi.is/~eok4/grr-v2">https://notendur.hi.is/~eok4/grr-v2</a></p>
+<hr>
+<h2 id="1-inngangur">1. Inngangur</h2>
+<p>Fyrirfinnast ýmiss konar gerðir af gagnagrindum sem nota má sem lyklasöfn. Margar hafa þær sína kosti og galla og geta nýst vel undir mismunandi kringumstæðum. Kostirnir geta falist í því að vera hraðvirk, einföld í útfærslu, áreiðanleg, eða nota lítið geymslupláss, svo dæmi séu nefnd.</p>
+<p>Ein af þessum lyklasöfnum eru tvíleitartré og afbrigði þeirra, sem er frægt fyrir að vera hálfgerður <em>jack of all trades</em>, þar sem allar vinsælustu aðferðirnar á lyklasafnið nota $O(lg(n))$ í versta fall eða að jafnaði, sérstaklega svo framarlega sem tréið sé í jafnvægi. Í þessari skýrslu verður skoðað bæði venjulegt tvíleitartré og afbrigði þessi, sem á ensku kallast <em>Treap</em>, en verður hér nefnt Hrúgutré. Hrúgutré, eins og nafnið gefur til kynna, uppfyllir bæði skilyrði hrúgu, og trés. Útfærslan notast við slembitölugjafa til að úthluta hnútum forgang við innsetningu, og hnútar með hærri forgang færast ofar í tréið.</p>
+<p>Raðaður beintengdur listi er svo annað lyklasafn sem er þó ekkert sérstaklega hraðvirkt, en með því að tengja saman nokkra raðaða beintengda lista þá má búa til aðra gagnagrind sem kallast á ensku <em>Skip List</em>, en verður hér kallað Skopplisti. Skopplisti virkar þannig að í grunninn er einn raðaður beintengdur listi með hnútum sem innihalda lykil og bendi til hægri. Svo eftir því sem listinn lengist er búinn til annar beintengdur listi þar sem hver hnútur hefur t.d. 50% líkur á að vera í þessum nýja lista fyrir ofan, sama gerist svo við þann lista þegar hann lengist, o.s.frv. Hver hnútur í þessum styttri aukalistum hefur svo bendi niður á þann hnút með sama lykil í listanum <em>fyrir neðan sig</em>. Afleiðing þessa er sú að leit verður mun sneggri, því það þarf ekki að ítra í gegnum allan upprunalega listann til að finna rétta staðsetningu, heldur er hægt að taka stór skref í efri listum og fara svo niður í neðri lista.</p>
+<p>Hrúgutré og skopplistar hafa bæði þann eiginleika að nýta slembigjafa í hönnun sinni. Er áreiðanlegt að reiða sig á slembigjafa í hönnun lyklasafna? Hefur stærð gagnagrindanna áhrif á áreiðanleika þeirra?</p>
+<p style="page-break-after: always">
+<h3 id="11-verkefnal%C3%BDsing">1.1 Verkefnalýsing</h3>
+<p>Í þessu verkefni verða útfærðar og bornar saman þrjár gagnagrindur til að útfæra lyklasöfn.</p>
+<p>Gagnagrindurnar eru:</p>
+<ol>
+<li>Tvíleitartré (<em>Binary Search Tree</em>)</li>
+<li>Hrúgutré (<em>Treap</em>)</li>
+<li>Skopplisti (<em>Skip List</em>)</li>
+</ol>
+<p>Gagnagrindurnar verða útfærðar (e. <em>implemented</em>) í Python með aðgerðunum:</p>
+<ul>
+<li>Innsetning (<code>insert()</code>)</li>
+<li>Uppfletting/Leit (<code>contains()</code>)</li>
+</ul>
+<p>Smíðaðar verða gagnagrindur og gögn.</p>
+<p>Aðferðirnar verða svo tímamældar á eftirfarandi máta.</p>
+<p>Innsetningin á $n_0=500$, $n_1=2500$ og $n_2=5000$ lyklum þar sem gildi lyklana verður $1, 3, 5, ..., 2n_i-1$ (s.s. oddatölur). Til þæginda verða lyklasöfnin gjarnan kölluð <em>lítið</em>, <em>meðalstórt</em> og <em>stórt</em> hér eftir, þó það gæti veitt gott innsæi að skoða bæði stærri og minni gagnagrindur, og þó $n_2=5000$ sé alls ekkert sérlega stórt.</p>
+<p>Röðun lyklanna við innsetingu verður tvenns konar:</p>
+<ul>
+<li>Lyklarnir eru í slembiröð.</li>
+<li>Lyklarnir eru í hækkandi röð, burtséð frá $\frac{n_i}{10}$ handahófskenndum víxlunum (hér eftir: '~<em>hækkandi</em> röð')</li>
+</ul>
+<p>Fyrir hvora gerð af innsetningu verða svo framkvæmdar þrjár mismunandi tímamælingar á leit að $m_0=100.000$, $m_1=200.000$ og svo $m_2=400.000$ lyklum. Í öllum tilfellum verða allir lyklar jafnlíklegir til að verða fyrir leitinni, en ýmist verður</p>
+<ul>
+<li>Einungis leitið að lyklum sem eru í gagnagrindinni (s.s. oddatölum á bilinu $[1, 2n_i-1]$), eða</li>
+<li>Helmingur leitana verða að gildum sem eru ekki í gagnagrindinni (s.s. allar heiltölur á bilinu $[0, 2n_i]$).</li>
+</ul>
+<p>Því má taka saman tímamælingar á leit í tilvikin:</p>
+<ul>
+<li>Slembin innsetning, allar leitir bera árangur</li>
+<li>Slembin innsetning, helmingur leitana árangurslaus</li>
+<li>Náröðuð innsetning, allar leitir bera árangur</li>
+<li>Náröðuð innsetning, helmingur leitana árangurslaus</li>
+</ul>
+<p>Niðurstöður verða svo birtar í töflum og línuritum, og verða þær bornar saman og túlkaðar.</p>
+<p>Verkefnið verður að öllu leiti unnið í Python og Jupyter, og allur kóði verður birtur og útskýrður.</p>
+<hr>
+<p style="page-break-after: always">
+<h2 id="2-%C3%BAtf%C3%A6rsla-%C3%A1-gagnagrindum">2. Útfærsla á Gagnagrindum</h2>
+<p>Notast var við hlutbundna hönnun á öllum gagnagrindum og nóðum þeirra. Gagnagrindaklasarnir heita <code>Tree</code>, <code>Treap</code> og <code>SkipList</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-string">""""""</span><span class="hljs-string">""" global imports """</span><span class="hljs-string">""""""</span>
+<span class="hljs-keyword">import</span> math, random, timeit
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+</div></code></pre>
+<hr>
+<h3 id="21-tv%C3%ADleitartr%C3%A9">2.1 Tvíleitartré</h3>
+<p>Tvíleitartré er klassísk lyklasafn. Styrkleiki tvíleitartrésins er sá að útfærslan er auðveld. Það þarf ekki að hafa sérstakan klasa fyrir tré með rót, og annan fyrir nóður, því rótin breytist aldrei (nema henni sé eytt, en þessi útfærsla bíður ekki upp á eyðingar). Ef tréið er í jafnvægi þá eru innsetningar- og leitartímar fyrirsjáanlegir.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Tvíleitartré</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tree</span>:</span>
+
+    <span class="hljs-comment"># Smiður</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, data)</span>:</span>
+        self.data = data
+        self.left = <span class="hljs-keyword">None</span>
+        self.right = <span class="hljs-keyword">None</span>
+
+    <span class="hljs-comment"># Innseting</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">insert</span><span class="hljs-params">(self, data)</span>:</span>
+        <span class="hljs-keyword">if</span> self.data:
+            <span class="hljs-keyword">if</span> data &lt; self.data:
+                <span class="hljs-keyword">if</span> self.left <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+                    self.left = Tree(data)
+                <span class="hljs-keyword">else</span>:
+                    self.left.insert(data)
+            <span class="hljs-keyword">elif</span> data &gt; self.data:
+                <span class="hljs-keyword">if</span> self.right <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+                    self.right = Tree(data)
+                <span class="hljs-keyword">else</span>:
+                    self.right.insert(data)
+        <span class="hljs-keyword">else</span>:
+            self.data = data
+
+    <span class="hljs-comment"># Uppfletting    </span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">contains</span><span class="hljs-params">(self, key)</span>:</span>
+        <span class="hljs-keyword">if</span> key &lt; self.data:
+            <span class="hljs-keyword">if</span> self.left <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>
+            <span class="hljs-keyword">return</span> self.left.contains(key)
+        <span class="hljs-keyword">elif</span> key &gt; self.data:
+            <span class="hljs-keyword">if</span> self.right <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>
+            <span class="hljs-keyword">return</span> self.right.contains(key)
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span>
+</div></code></pre>
+<hr>
+<h3 id="22-hr%C3%BAgutr%C3%A9">2.2 Hrúgutré</h3>
+<p>Hrúgutréið hefur sér klasa fyrir tréið sjálft þar sem haldið er utan um hvaða nóða er rót. Aðgerðir eru framkvæmdar á tréið, sem geymir nóður.</p>
+<p>Hrúgutréið uppfyllir hrúguskilyrði þar sem nóður með hærri forgang (lægra gildi á <code>self.priority</code>) eru ofar í trénu. Útfærslan bíður ekki upp á að hægt sé að velja forgang á innsetta gildið, en í staðinn er framkölluð handahófskennd fleytitala á bilinu $[0,1)$ sem eru u.þ.b. $2^{53}$ ólík gildi, og líkurnar á að fá þá sömu tvisvar því gríðarlega litlar. Annars væri t.a.m. hægt að upphafsstilla mengi (Python <code>set</code>) af tölum við smíði trésins og fjarlægja gildi úr því mengi og nota sem forgang. Þetta mengi þyrfti þó að að vera að endanlegri stærð, sem myndi takmarka stærð trésins.</p>
+<p>Leitin er mjög lík leitinni í tvíleitartré, fyrir utan að fyrst þarf að gá hvort hrúgutréið sé tómt, og ef ekki, þá skal hefja leit eins og í tvíleitartrénu út frá rótinni. Það lengir leitartíma örlítið, en hefur minni áhrif eftir því sem tréið verður stærra (því það verða fleiri aðgerðir í hverri leit og þessi eina aðgerð er hverfandi).</p>
+<p>Sama á svo við um innsetningu í hrúgutréið, nema að þar þarf einnig að laga hrúguskilyrðin eftir hverja innsetningu. Því er haldið fram í bókinni að snúningarnir taki bara fastan tíma, en við munum sjá á tímamælingunum t.d. hvort innsetning á gildum með lyklum í slembinni röð sé þá raunverulega jafn snöggur í hrúgutréum og í tvíleitartréi.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TreapNode</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-comment"># Smiður nóðu</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, data, parent = None)</span>:</span>
+        self.data = data
+        self.priority = random.random()
+        self.parent = parent
+        self.left = <span class="hljs-keyword">None</span>
+        self.right = <span class="hljs-keyword">None</span>
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Treap</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-comment"># Smiður hrúgutrés</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        self.root = <span class="hljs-keyword">None</span>
+
+    <span class="hljs-comment"># Uppfletting</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">contains</span><span class="hljs-params">(self, data)</span>:</span>
+        <span class="hljs-keyword">if</span> self.root <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>
+        <span class="hljs-keyword">return</span> self._contains(data, self.root)
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_contains</span><span class="hljs-params">(self, data, r)</span>:</span>
+        <span class="hljs-keyword">if</span> data &lt; r.data:
+            <span class="hljs-keyword">if</span> r.left <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>
+            <span class="hljs-keyword">return</span> self._contains(data, r.left)
+        <span class="hljs-keyword">elif</span> data &gt; r.data:
+            <span class="hljs-keyword">if</span> r.right <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>
+            <span class="hljs-keyword">return</span> self._contains(data, r.right)
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span>
+
+    <span class="hljs-comment"># Innsetning</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">insert</span><span class="hljs-params">(self, data)</span>:</span>
+        <span class="hljs-keyword">if</span> self.root <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+            self.root = TreapNode(data)
+            <span class="hljs-keyword">return</span>
+        self._insert(data, self.root)
+        
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_insert</span><span class="hljs-params">(self, data, r)</span>:</span>
+        <span class="hljs-keyword">if</span> data &lt; r.data:
+            <span class="hljs-keyword">if</span> r.left <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+                r.left = TreapNode(data, r)
+                self._balance(r.left)
+            <span class="hljs-keyword">else</span>:
+                self._insert(data, r.left)
+        <span class="hljs-keyword">elif</span> data &gt; r.data:
+            <span class="hljs-keyword">if</span> r.right <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+                r.right = TreapNode(data, r)
+                self._balance(r.right)
+            <span class="hljs-keyword">else</span>:
+                self._insert(data, r.right)
+        <span class="hljs-keyword">else</span>: <span class="hljs-comment"># data == r.data</span>
+            <span class="hljs-keyword">return</span>
+
+    <span class="hljs-comment"># laga hrúguskilyrði</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_balance</span><span class="hljs-params">(self, s)</span>:</span>
+        <span class="hljs-keyword">while</span> s.parent <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">and</span> s.priority &lt; s.parent.priority:
+            <span class="hljs-keyword">if</span> s.data &lt; s.parent.data:
+                self._rotate_right(s)
+            <span class="hljs-keyword">else</span>: <span class="hljs-comment"># self.data &gt; self.parent.data</span>
+                self._rotate_left(s)
+        <span class="hljs-keyword">if</span> s.parent <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+            self.root = s
+         
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_rotate_right</span><span class="hljs-params">(self, s)</span>:</span>
+        p = s.parent
+        g = p.parent
+        <span class="hljs-keyword">if</span> s.right <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span>:
+            s.right.parent = p
+        <span class="hljs-keyword">if</span> g <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span>:
+            <span class="hljs-keyword">if</span> p <span class="hljs-keyword">is</span> g.left:
+                g.left = s
+            <span class="hljs-keyword">else</span>: <span class="hljs-comment"># p is g.right</span>
+                g.right = s
+        p.left = s.right
+        s.parent = g
+        p.parent = s
+        s.right = p
+                       
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_rotate_left</span><span class="hljs-params">(self, s)</span>:</span>
+        p = s.parent
+        g = p.parent
+        <span class="hljs-keyword">if</span> s.left <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span>:
+            s.left.parent = p
+        <span class="hljs-keyword">if</span> g <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span>:
+            <span class="hljs-keyword">if</span> p <span class="hljs-keyword">is</span> g.left:
+                g.left = s
+            <span class="hljs-keyword">else</span>: <span class="hljs-comment"># p is g.right</span>
+                g.right = s
+        p.right = s.left
+        s.parent = g
+        p.parent = s
+        s.left = p
+</div></code></pre>
+<hr>
+<h3 id="23-skopplisti">2.3 Skopplisti</h3>
+<p>Skopplistinn hefur þann kost að lág lyklagildi eru framarlega, en engu að síður er nokkuð hraðvirkt að finna hærri gildi.</p>
+<p>Ókosturinn er sá að af þessum gagnagrindum reyndist hönnunin á skopplistanum vera mesta mausið (mögulega af því höfundur er vanari að hugsa um tré); oft hefði verið gott að hafa bendi upp á næsta lista fyrir ofan, og hefði það mögulega orðið hraðvirkara, en það brýtur skilgreininguna á skopplista.</p>
+<p>Það er einn annmarki í útfærslunni, en hann er í aðgerðinni <code>updateAbove</code>. Þar þarf stundum að ýtra um nokkur gildi í listanum fyrir neðan til að passa að hnúturinn bendi rétt niður, og getur þetta því aukið tímann örlítið fyrir hvera innsetningu. Þetta ætti að vera hjákvæmilegt, en höfundi tókst ekki að breyta þessari útfærslu skopplista án þess að þurfa að endursmíða hann frá grunni með hugmyndum annara. Engu að síður þá ætti þetta ekki að hafa áhrif á uppflettingartíma.</p>
+<p>Í undirkafla 7.5 (aftast í skýrslunni) má finna <code>main()</code> aðferðir og fleiri til að skoða og prófa gagnagrindirnar. Sér í lagi var útfærð aðferðin <code>printSkiplist()</code> til að athuga að allir bendlar séu réttir, auk þess var bætt prent-skipunum inn í <code>insert()</code> og <code>contains()</code> til að ganga úr skugga um að leitin færi í rétta braut í hverri ítrun, og allt leit vel út. Þessar línur hafa einungis verið <em>kommentaðar</em> út, til að auðvelda yfirferð.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span><span class="hljs-params">()</span>:</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, key, right, down=None)</span>:</span>
+        self.key = key
+        self.right = right
+        self.down = down
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SortedLinkedList</span><span class="hljs-params">()</span>:</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        self.tail = ListNode(math.inf, <span class="hljs-keyword">None</span>)
+        self.head = ListNode(-math.inf, self.tail)
+        
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SkipList</span><span class="hljs-params">()</span>:</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        self.layers = <span class="hljs-number">0</span>
+        self.sortedLists = [SortedLinkedList()]
+
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">contains</span><span class="hljs-params">(self, x)</span>:</span>
+        h = self.layers
+        v = self.sortedLists[h].head
+<span class="hljs-comment">#        print('byrja leit á', x)</span>
+        <span class="hljs-keyword">while</span> v <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">and</span> v.key != x:
+            <span class="hljs-keyword">if</span> v.right.key &gt; x:
+<span class="hljs-comment">#                a = str(v.down.key) if v.down is not None else 'None'</span>
+<span class="hljs-comment">#                b = str(v.right.key) if v.right is not None else 'None'</span>
+<span class="hljs-comment">#                print('fór niður úr hæð '+ str(h) + ' frá '+ str(v.key) + ' til ' + a + ' en til hægri er ' + b)</span>
+<span class="hljs-comment">#                h-=1</span>
+                v = v.down
+            <span class="hljs-keyword">else</span>:
+<span class="hljs-comment">#                print('fór til hægri á hæð '+ str(h) + ' frá ' + str(v.key) + ' til ' + str(v.right.key))</span>
+                v = v.right
+<span class="hljs-comment">#            print()</span>
+        <span class="hljs-keyword">return</span> v <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">and</span> v.key == x
+
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">insert</span><span class="hljs-params">(self, x)</span>:</span>
+        h = self.layers
+        L = self.sortedLists[h]
+        v = L.head
+        rVs = []
+        <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>: <span class="hljs-comment"># Could put 'v.right.key == x' here instead of True</span>
+            <span class="hljs-keyword">if</span> v.right.key &lt; x:
+                v = v.right
+            <span class="hljs-keyword">elif</span> v.down <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span>:
+                rVs.append(v)
+                v = v.down
+            <span class="hljs-keyword">elif</span> v.right.key == x: <span class="hljs-comment"># but fewer comparisons if kept here</span>
+                <span class="hljs-keyword">return</span>
+            <span class="hljs-keyword">else</span>: <span class="hljs-comment"># v.right.key &gt; x and v.down is None. We are here!</span>
+                v.right = ListNode(x, v.right, v.down)
+                self.updateAbove(x, rVs)
+                <span class="hljs-keyword">break</span>
+
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">updateAbove</span><span class="hljs-params">(self, x, rVs)</span>:</span>
+        i, n = <span class="hljs-number">0</span>, len(rVs)
+        b = self.flipCoin() <span class="hljs-comment"># flip coin</span>
+        <span class="hljs-keyword">while</span> i &lt; n <span class="hljs-keyword">and</span> b: <span class="hljs-comment"># add x to above layers</span>
+            rv = rVs[n-i<span class="hljs-number">-1</span>]
+            d = rv.down
+            <span class="hljs-keyword">while</span> x != d.key: <span class="hljs-comment"># make sure x is pointing down to itself</span>
+                d = d.right
+<span class="hljs-comment">#            print(x, 'inserted with', d.key, 'below')</span>
+            rv.right = ListNode(x, rv.right, d)
+            b = b <span class="hljs-keyword">and</span> self.flipCoin()
+            i+=<span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> i == n <span class="hljs-keyword">and</span> b: <span class="hljs-comment"># already added to top layer, add another?</span>
+            L = SortedLinkedList()
+            L.head.down = self.sortedLists[self.layers].head
+            L.tail.down = self.sortedLists[self.layers].tail
+            self.layers += <span class="hljs-number">1</span>
+            self.sortedLists.append(L)
+
+    <span class="hljs-string">""" prentar hvern layer af listum L í SkipList á forminu:
+        L[0].key (L[0].down.key) -&gt; L[1] (L[1].down.key)...
+    """</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">printSkipList</span><span class="hljs-params">(self)</span>:</span>
+        h = self.layers
+        SL = self.sortedLists
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(h,<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>):
+            L = SL[i]
+            v = L.head
+            l = <span class="hljs-string">''</span>
+            d = <span class="hljs-string">''</span>
+            <span class="hljs-keyword">while</span> v <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span>:
+                d = str(v.down.key) <span class="hljs-keyword">if</span> v.down <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">else</span> <span class="hljs-string">''</span>
+                l += str(v.key)  + <span class="hljs-string">' ('</span> + d + <span class="hljs-string">') '</span> + <span class="hljs-string">'-&gt; '</span>
+                v = v.right
+            print(l)
+        <span class="hljs-comment">#    print(d)</span>
+            print()
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flipCoin</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)==<span class="hljs-number">1</span>
+</div></code></pre>
+<hr>
+<h2 id="3-sm%C3%AD%C3%B0i-gagna">3. Smíði gagna</h2>
+<p>Nú þarf að smíða gögn til að setja inn í gagnagrindurnar. Gögnin eru geymd í lista sem vísað er í þegar gögnin eru sett í gagnagrindurnar. Auðvelt væri að búa gögnin til jafnóðum og þau eru sett inn, en þetta er gert til að koma í veg fyrir að smíði gagna hafi áhrif á tímamælinguna meðan innsetningin á sér stað.</p>
+<p>Á svipaðan máta eru búnir til sex mismunandi listar til að leita með, tveir fyrir hvert gildi á $n_0-n_2$, allir að lengd $m_2=400.000$. Þá er einfaldlega ítrað í gegnum $1/4$ og $1/2$ af listanum fyrir lægri gildi á $m_i$.</p>
+<p>Leitað verður s.s. $100.000$ til $400.000$ sinnum í hverjum lista, en af stökum á bilinu $0$ til $1.000$, $5.000$ eða $10.000$ eftir tilviki. Því verður leitað mjög oft að hverri tölu. Leitarlistarnir eru stokkaðir (<code>shuffle</code>) en það hefur lítil áhrif því hver tala verður u.þ.b. jafn oft fyrir leitinni.</p>
+<p>Skilgreinum hér víddir sem vísað er í. Allir kóðabútar eins og þessi merktur <code>Fjöldi mælinga</code> tilheyra einni einingu sem púsla má saman og keyra í heild til að herma verkefnið. Á <code>import</code> skipununum sést hvert þarf að sitja hvert fall sem birt verða í köflum.</p>
+<pre class="hljs"><code><div><span class="hljs-string">""""""</span><span class="hljs-string">""""""</span><span class="hljs-string">""" local imports """</span><span class="hljs-string">""""""</span><span class="hljs-string">""""""</span>
+<span class="hljs-keyword">from</span> Treap <span class="hljs-keyword">import</span> Treap
+<span class="hljs-keyword">from</span> Tree <span class="hljs-keyword">import</span> Tree
+<span class="hljs-keyword">from</span> SkipList <span class="hljs-keyword">import</span> SkipList
+<span class="hljs-keyword">from</span> FunctionsV2 <span class="hljs-keyword">import</span> SmidaInnsetningarLyklaLista, SmidaLeitarLyklaLista
+<span class="hljs-keyword">from</span> FunctionsV2 <span class="hljs-keyword">import</span> MaelaInnsetningartima, MaelaLeitartima
+<span class="hljs-keyword">from</span> TablesV2 <span class="hljs-keyword">import</span> TaflaLinuheiti, LeitartimaToflur, BirtaTofluHTML, BirtaToflurHTML
+<span class="hljs-keyword">from</span> GraphsV2 <span class="hljs-keyword">import</span> GrafInnsetningartimi, GrafLeitartimi, GrafLeitartimi_mFast
+
+<span class="hljs-string">""""""</span><span class="hljs-string">""""""</span><span class="hljs-string">""" Fjöldi mælinga """</span><span class="hljs-string">""""""</span><span class="hljs-string">""""""</span>
+k = <span class="hljs-number">3</span>
+ns = [<span class="hljs-number">500</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">5000</span>]
+ms = [<span class="hljs-number">100000</span>, <span class="hljs-number">200000</span>, <span class="hljs-number">400000</span>]
+f = <span class="hljs-number">50</span> <span class="hljs-comment"># fjöldi mælinga</span>
+</div></code></pre>
+<hr>
+<h3 id="31-f%C3%B6ll-til-notkunar-vi%C3%B0-ger%C3%B0-gagna">3.1 Föll til notkunar við gerð gagna</h3>
+<pre class="hljs"><code><div><span class="hljs-string">""""""</span><span class="hljs-string">""" Búa til gögn fyrir innsetningu """</span><span class="hljs-string">""""""</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">SmidaInnsetningarLyklaLista</span><span class="hljs-params">(Ss, Rs, ns)</span>:</span>
+    i = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> ns:
+        Ss.append(np.arange(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>, <span class="hljs-number">2</span>))
+        Rs.append(np.copy(Ss[i]))
+        random.shuffle(Ss[i])
+        RandomVixlanir(Rs[i], n)
+        i+=<span class="hljs-number">1</span>
+
+<span class="hljs-string">""""""</span><span class="hljs-string">""" Búa til gögn fyrir leit """</span><span class="hljs-string">""""""</span>
+<span class="hljs-string">""" Ef b þá verður búinn til heiltölulisti á bilinu [0,2n]
+    en annars bara oddatölur """</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">SmidaLeitarLyklaLista</span><span class="hljs-params">(m, ns, k, b)</span>:</span>
+    Ls = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):
+        n = ns[i]
+        a = np.arange(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>*n) <span class="hljs-keyword">if</span> b <span class="hljs-keyword">else</span> np.arange(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+        Ls.append(a)
+        <span class="hljs-keyword">while</span> len(Ls[i]) &lt; m:
+            Ls[i] = np.concatenate((Ls[i], a))
+        random.shuffle(Ls[i])
+    <span class="hljs-keyword">return</span> Ls
+    
+<span class="hljs-string">""" Framkvæmir n/10 staðsetningavíxlanir í listanum X """</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">RandomVixlanir</span><span class="hljs-params">(X,n)</span>:</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n//<span class="hljs-number">10</span>):
+        a, b = random.randint(<span class="hljs-number">0</span>,n<span class="hljs-number">-1</span>), random.randint(<span class="hljs-number">0</span>,n<span class="hljs-number">-1</span>)
+        X[a], X[b] = X[b], X[a]
+</div></code></pre>
+<p>Gögnin eru svo upphafssett á eftirfarandi máta. Leitarlyklar eru einungis smíðaðir einu sinni, en innsetningargögn verða smíðuð í hverri ítrun eins og útskýrt verður rétt að neðan.</p>
+<pre class="hljs"><code><div><span class="hljs-string">""""""</span><span class="hljs-string">""""""</span><span class="hljs-string">""" Listar undir innsetningartíma """</span><span class="hljs-string">""""""</span><span class="hljs-string">""""""</span>
+innsetningartimiTreeSlembid = np.zeros(<span class="hljs-number">3</span>,dtype=float)
+innsetningartimiTreeRadad = np.zeros(<span class="hljs-number">3</span>,dtype=float)
+innsetningartimiTreapSlembid = np.zeros(<span class="hljs-number">3</span>,dtype=float)
+innsetningartimiTreapRadad = np.zeros(<span class="hljs-number">3</span>,dtype=float)
+innsetningartimiSkipListSlembid = np.zeros(<span class="hljs-number">3</span>,dtype=float)
+innsetningartimiSkipListRadad = np.zeros(<span class="hljs-number">3</span>,dtype=float)
+<span class="hljs-comment"># Og setja þá í lista til að geta vísað í þá eftir stuðlum</span>
+
+<span class="hljs-string">""""""</span><span class="hljs-string">""""""</span><span class="hljs-string">""" Listar undir leitartíma """</span><span class="hljs-string">""""""</span><span class="hljs-string">""""""</span>
+arangursrikurLeitartimiTreeSlembid = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+arangursrikurLeitartimiTreeRadad = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+arangursrikurLeitartimiTreapSlembid = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+arangursrikurLeitartimiTreapRadad = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+arangursrikurLeitartimiSkipListSlembid = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+arangursrikurLeitartimiSkipListRadad = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+arangurslitillLeitartimiTreeSlembid = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+arangurslitillLeitartimiTreeRadad = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+arangurslitillLeitartimiTreapSlembid = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+arangurslitillLeitartimiTreapRadad = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+arangurslitillLeitartimiSkipListSlembid = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+arangurslitillLeitartimiSkipListRadad = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=float)
+
+<span class="hljs-string">""" Smíða gögn til að leita að """</span>
+ArangursrikirLyklar = SmidaLeitarLyklaLista(ms[<span class="hljs-number">2</span>], ns, k, <span class="hljs-keyword">False</span>)
+ArangurslitlirLyklar = SmidaLeitarLyklaLista(ms[<span class="hljs-number">2</span>], ns, k, <span class="hljs-keyword">True</span>)
+</div></code></pre>
+<h3 style="page-break-before: always"> 3.2 Föll til notkunar við leit </h3>
+<p>Notast er við eininguna (e. <em>module</em>) <code>timeit</code> sem notar <code>time.perf_counter()</code> (<code>perf</code> fyrir <em>performance</em>), sem skilar fleytitölu og er nákvæmasti kosturinn í stuttar mælingar samkvæmt <a href="https://docs.python.org/3/library/time.html#time.perf_counter">Python Docs</a>. Mælingin inniheldur tímann sem líður þegar þráðurinn sefur, en það sýnir góða mynd af notkun í raunveruleikanum. Þetta er svipað og að taka mismun á tveimur mælingum af tímanum sem hefur liðið síðan <em>epoch</em>, en <code>timeit.timeit()</code> á að vera nákvæmari sér í lagi á Windows stýrikerfum. Að auki þá er aðferðin gríðarlega þægileg í notkun.</p>
+<p>Mælingin á innsetningartímanum útskýrir sig svolítið sjálf og með hjálp fallslýsingarinnar.</p>
+<p>Mælingin á leitartímanum fer þannig fyrir sig að ítrað er yfir <code>i</code> frá $0$ til $k=3$ sem er fjöldi gagnagrinda sem á að leita í.</p>
+<ul>
+<li>Hver slík gagnagrind <code>DSs[i]</code> getur til dæmis verið <code>Treap()</code> með $n_i$ lyklum sem voru settir inn í slembinni röð.</li>
+<li>Fyrst eru framkvæmdar leitir að fyrstu $100.000$ stökunum í <code>Xs[i]</code>, og það gildi bætt við töluna í listasætinu <code>Timi[i][0]</code>, svo er leitað að næstu $100.000$ stökunum í <code>Xs[i]</code>, og það gildi lagt við fyrra tímagildi og bætt við töluna í listasætinu <code>Timi[i][1]</code>, og að lokum síðustu $200.000$ stökin og tíminn lagður við og bætt við tímann listasætinu <code>Timi[i][2]</code>.</li>
+<li>Í módúlnum sem sér um að kalla á þetta falla er skilgreind breitan <code>f</code>$=50$, sem táknar fjölda tímamælinga. Tímanum verður því deilt með $50$ til að ákvarða meðal leitartíma á $50$ mælingum.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-string">""" Tímamæla innsetningar    # Lýsing m.v. **k = 3**
+DSs: Listi með 3 gagnagrindum af sömu gerð
+Xs: Listi með 3 listum (af lengdum ns) með sömu gerð af röðun gagna
+Timi: Listi með 3 stökum sem halda utan um tíma sem hafa farið í sérhverja aðgerð hingað til
+"""</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">MaelaInnsetningartima</span><span class="hljs-params">(DSs, Xs, k, Timi)</span>:</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):
+        Timi[i] += timeit.timeit(<span class="hljs-string">"for x in Xs[i]: DSs[i].insert(x)"</span>, 
+            globals=locals(), number=<span class="hljs-number">1</span>)
+
+<span class="hljs-string">""" Tímamæla leit
+Fyrir:  k er fjöldi gagnagrinda (sem á að leita í)
+        DSs er k-staka listi af gagnagrindum
+        Xs er k-staka listi af listum af lyklum
+        ms er 3ja staka talnalisti (fjöldi leitanna)
+Eftir:  Timi er listi af listum
+        Timi[i] inniheldur tímann fyrir ms[0], ms[1] og ms[2] leitanir í DSs[i]
+"""</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">MaelaLeitartima</span><span class="hljs-params">(DSs, Xs, ms, k, Timi)</span>:</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k): <span class="hljs-comment"># fyrir sérhverja stærð af gagnagrind n0, n1 og n2</span>
+        t = timeit.timeit(<span class="hljs-string">"for j in range(ms[0]): DSs[i].contains(Xs[i][j])"</span>,
+                   globals=locals(), number=<span class="hljs-number">1</span>)
+        Timi[i][<span class="hljs-number">0</span>] += t <span class="hljs-comment"># fyrstu 100.000 leitanir</span>
+        t += timeit.timeit(<span class="hljs-string">"for j in range(ms[0],ms[1]): DSs[i].contains(Xs[i][j])"</span>,
+                    globals=locals(), number=<span class="hljs-number">1</span>)
+        Timi[i][<span class="hljs-number">1</span>] += t <span class="hljs-comment"># fyrstu 200.000 leitanir</span>
+        t += timeit.timeit(<span class="hljs-string">"for j in range(ms[1],ms[2]): DSs[i].contains(Xs[i][j])"</span>,
+                    globals=locals(), number=<span class="hljs-number">1</span>)
+        Timi[i][<span class="hljs-number">2</span>] += t <span class="hljs-comment"># fyrstu 400.000 leitanir</span>
+</div></code></pre>
+<hr>
+<h3 id="33-framkv%C3%A6ma-t%C3%ADmam%C3%A6lingar">3.3 Framkvæma tímamælingar</h3>
+<p>Eftirfarandi eining er endurtekin <code>f</code>$=50$ sinnum. Tími hverrar mælingar er alltaf lagður við tímann sem hefur farið í þá mælingu, og að lokum er þeim öllum deilt með $50$. Ástæðan fyrir valinu á <code>f</code> voru frávik í mælingum þegar þetta var einungis endurtekið einu sinni eða þrisvar. Stundum getur maður verið einstaklega óheppin með þessar $n/10$ handahófskenndu víxlanir í <code>RadadirLyklar</code> sem eru s.s. í ~<em>hækkandi</em> röð, og það bitnar þá mest á tvíleitartréunum og aðeins á skopplistunum. Til að fá hugmynd um hversu vel hver gagnagrind stendur sig að jafnaði í raunveruleikanum þá er mikilvægt að framkvæma margar mælingar og taka meðaltal þeirra.</p>
+<pre class="hljs"><code><div><span class="hljs-string">""" Mælingar geta hafist """</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(f):
+    <span class="hljs-string">""" Smíða gögn til innsetningar """</span>
+    SlembnirLyklar = []
+    RadadirLyklar = []
+    SmidaInnsetningarLyklaLista(SlembnirLyklar, RadadirLyklar, ns)
+    
+    <span class="hljs-string">""""""</span><span class="hljs-string">""""""</span><span class="hljs-string">""" Mælingar á innsetningartíma """</span><span class="hljs-string">""""""</span><span class="hljs-string">""""""</span>
+    <span class="hljs-string">""" Setja gögn í gagnagrindur """</span>
+    TreeS = [Tree(SlembnirLyklar[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]), Tree(SlembnirLyklar[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]), Tree(SlembnirLyklar[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>])]
+    TreeR = [Tree(RadadirLyklar[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]), Tree(RadadirLyklar[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]), Tree(RadadirLyklar[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>])]
+    MaelaInnsetningartima(TreeS,SlembnirLyklar,k,innsetningartimiTreeSlembid)
+    MaelaInnsetningartima(TreeR,RadadirLyklar,k,innsetningartimiTreeRadad)
+    
+    TreapS = [Treap(),Treap(),Treap()]
+    TreapR = [Treap(),Treap(),Treap()]
+    MaelaInnsetningartima(TreapS,SlembnirLyklar,k,innsetningartimiTreapSlembid)
+    MaelaInnsetningartima(TreapR,RadadirLyklar,k,innsetningartimiTreapRadad)
+    
+    SkipListS = [SkipList(), SkipList(), SkipList()]
+    SkipListR = [SkipList(), SkipList(), SkipList()]
+    MaelaInnsetningartima(SkipListS,SlembnirLyklar,k,innsetningartimiSkipListSlembid)
+    MaelaInnsetningartima(SkipListR,RadadirLyklar,k,innsetningartimiSkipListRadad)
+    
+    <span class="hljs-string">""""""</span><span class="hljs-string">""""""</span><span class="hljs-string">""" Mælingar á leitartíma """</span><span class="hljs-string">""""""</span><span class="hljs-string">""""""</span>
+    <span class="hljs-string">""" Leitad ad lyklum sem eru i gagnagrindunum """</span>
+    MaelaLeitartima(TreeS, ArangursrikirLyklar, ms, k, arangursrikurLeitartimiTreeSlembid)
+    MaelaLeitartima(TreeR, ArangursrikirLyklar, ms, k, arangursrikurLeitartimiTreeRadad)
+    
+    MaelaLeitartima(TreapS, ArangursrikirLyklar, ms, k, arangursrikurLeitartimiTreapSlembid)
+    MaelaLeitartima(TreapR, ArangursrikirLyklar, ms, k, arangursrikurLeitartimiTreapRadad)
+    
+    MaelaLeitartima(SkipListS, ArangursrikirLyklar, ms, k, arangursrikurLeitartimiSkipListSlembid)
+    MaelaLeitartima(SkipListR, ArangursrikirLyklar, ms, k, arangursrikurLeitartimiSkipListRadad)
+
+    <span class="hljs-string">""" Leitad ad lyklum þar sem helmingur er i gagnagrindunum """</span>
+    MaelaLeitartima(TreeS, ArangurslitlirLyklar, ms, k, arangurslitillLeitartimiTreeSlembid)
+    MaelaLeitartima(TreeR, ArangurslitlirLyklar, ms, k, arangurslitillLeitartimiTreeRadad)
+    
+    MaelaLeitartima(TreapS, ArangurslitlirLyklar, ms, k, arangurslitillLeitartimiTreapSlembid)
+    MaelaLeitartima(TreapR, ArangurslitlirLyklar, ms, k, arangurslitillLeitartimiTreapRadad)
+    
+    MaelaLeitartima(SkipListS, ArangurslitlirLyklar, ms, k, arangurslitillLeitartimiSkipListSlembid)
+    MaelaLeitartima(SkipListR, ArangurslitlirLyklar, ms, k, arangurslitillLeitartimiSkipListRadad)
+
+
+<span class="hljs-string">""" Deila tímamælingum með fjölda tímamælinga """</span>
+innsetningartimiTreeSlembid *= (<span class="hljs-number">1</span>/f)
+innsetningartimiTreeRadad *= (<span class="hljs-number">1</span>/f)
+innsetningartimiTreapSlembid *= (<span class="hljs-number">1</span>/f)
+innsetningartimiTreapRadad *= (<span class="hljs-number">1</span>/f)
+innsetningartimiSkipListSlembid *= (<span class="hljs-number">1</span>/f)
+innsetningartimiSkipListRadad *= (<span class="hljs-number">1</span>/f)
+
+arangursrikurLeitartimiTreeSlembid *= (<span class="hljs-number">1</span>/f)
+arangursrikurLeitartimiTreeRadad *= (<span class="hljs-number">1</span>/f)
+arangursrikurLeitartimiTreapSlembid *= (<span class="hljs-number">1</span>/f)
+arangursrikurLeitartimiTreapRadad *= (<span class="hljs-number">1</span>/f)
+arangursrikurLeitartimiSkipListSlembid *= (<span class="hljs-number">1</span>/f)
+arangursrikurLeitartimiSkipListRadad *= (<span class="hljs-number">1</span>/f)
+arangurslitillLeitartimiTreeSlembid *= (<span class="hljs-number">1</span>/f)
+arangurslitillLeitartimiTreeRadad *= (<span class="hljs-number">1</span>/f)
+arangurslitillLeitartimiTreapSlembid *= (<span class="hljs-number">1</span>/f)
+arangurslitillLeitartimiTreapRadad *= (<span class="hljs-number">1</span>/f)
+arangurslitillLeitartimiSkipListSlembid *= (<span class="hljs-number">1</span>/f)
+arangurslitillLeitartimiSkipListRadad *= (<span class="hljs-number">1</span>/f)
+</div></code></pre>
+<p>Það er gott að setja tímamælingarnar í lista sem er auðvelt að vísa í, sérstaklega nú þegar gögnin eru tilbúin. Gerum það.</p>
+<pre class="hljs"><code><div>IT = [innsetningartimiTreeSlembid
+, innsetningartimiTreeRadad
+, innsetningartimiTreapSlembid
+, innsetningartimiTreapRadad
+, innsetningartimiSkipListSlembid
+, innsetningartimiSkipListRadad]
+
+LT = [arangursrikurLeitartimiTreeSlembid
+, arangursrikurLeitartimiTreeRadad
+, arangursrikurLeitartimiTreapSlembid
+, arangursrikurLeitartimiTreapRadad
+, arangursrikurLeitartimiSkipListSlembid
+, arangursrikurLeitartimiSkipListRadad
+, arangurslitillLeitartimiTreeSlembid
+, arangurslitillLeitartimiTreeRadad
+, arangurslitillLeitartimiTreapSlembid
+, arangurslitillLeitartimiTreapRadad
+, arangurslitillLeitartimiSkipListSlembid
+, arangurslitillLeitartimiSkipListRadad]
+</div></code></pre>
+<p>Forritið var hins vegar keyrt (með <code>f</code>$=50$) í Spyder og gögnin flutt út með einingunni <code>pickle</code>, og flutt inn í Jupyter með eftirfarandi kóðabút, sem er ekki hluti af forritinu.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> pickle 
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">'50f.pickle'</span>, <span class="hljs-string">'rb'</span>) <span class="hljs-keyword">as</span> f:
+    IT, LT, LinuheitiInnsetning, LinuheitiLeit, ns, ms, k = pickle.load(f)
+    
+<span class="hljs-comment"># Notað í línurit</span>
+LTarangursrikurS = [LT[<span class="hljs-number">0</span>],LT[<span class="hljs-number">2</span>],LT[<span class="hljs-number">4</span>]]
+LTarangursrikurR = [LT[<span class="hljs-number">1</span>],LT[<span class="hljs-number">3</span>],LT[<span class="hljs-number">5</span>]]
+LTarangurslitillS = [LT[<span class="hljs-number">6</span>],LT[<span class="hljs-number">8</span>],LT[<span class="hljs-number">10</span>]]
+LTarangurslitillR = [LT[<span class="hljs-number">7</span>],LT[<span class="hljs-number">9</span>],LT[<span class="hljs-number">11</span>]]
+</div></code></pre>
+<hr>
+<h2 id="4-birting-m%C3%A6linga-%C3%AD-t%C3%B6flum">4. Birting mælinga í töflum</h2>
+<h5 id="f%C3%B6ll-til-a%C3%B0-breyta-listum-%C3%AD-t%C3%B6flur-og-birta-%C3%BE%C3%A6r-m%C3%A1-finna-%C3%AD-undirkafla-71">Föll til að breyta listum í töflur og birta þær má finna í undirkafla 7.1</h5>
+<p>Með þeim aðferðum eru smíðaðar eftirfarandi töflur. Þær eru svo birtar og túlkaðar í kafla 4.</p>
+<pre class="hljs"><code><div><span class="hljs-string">""""""</span><span class="hljs-string">""" Búa til töflur """</span><span class="hljs-string">""""""</span>
+TaflaInnsetningartimiSlembid = TaflaLinuheiti(LinuheitiInnsetning,[ns,IT[<span class="hljs-number">0</span>],IT[<span class="hljs-number">2</span>],IT[<span class="hljs-number">4</span>]])
+TaflaInnsetningartimiRadad = TaflaLinuheiti(LinuheitiInnsetning,[ns,IT[<span class="hljs-number">1</span>],IT[<span class="hljs-number">3</span>],IT[<span class="hljs-number">5</span>]])
+TaflaArangursrikurLeitartimiSlembid = LeitartimaToflur(LinuheitiLeit, [LT[<span class="hljs-number">0</span>], LT[<span class="hljs-number">2</span>], LT[<span class="hljs-number">4</span>]],ms)
+TaflaArangursrikurLeitartimiRadad = LeitartimaToflur(LinuheitiLeit, [LT[<span class="hljs-number">1</span>], LT[<span class="hljs-number">3</span>], LT[<span class="hljs-number">5</span>]],ms)
+TaflaArangurslitillLeitartimiSlembid = LeitartimaToflur(LinuheitiLeit, [LT[<span class="hljs-number">6</span>], LT[<span class="hljs-number">8</span>], LT[<span class="hljs-number">10</span>]],ms)
+TaflaArangurslitillLeitartimiRadad = LeitartimaToflur(LinuheitiLeit, [LT[<span class="hljs-number">7</span>], LT[<span class="hljs-number">9</span>], LT[<span class="hljs-number">11</span>]],ms)
+</div></code></pre>
+<hr>
+<h3 id="41-birting-%C3%A1-t%C3%B6flum">4.1 Birting á töflum</h3>
+<h4 id="411-innsetningart%C3%ADmi">4.1.1 Innsetningartími</h4>
+<pre class="hljs"><code><div>BirtaTofluHTML(TaflaInnsetningartimiSlembid, <span class="hljs-string">"Tafla 1: Lyklar settir inn í slembiröð"</span>)
+BirtaTofluHTML(TaflaInnsetningartimiRadad, <span class="hljs-string">"Lyklar settir inn í &lt;i&gt;~hækkandi&lt;/i&gt; röð"</span>)
+</div></code></pre>
+<h5>Tafla 1: Lyklar settir inn í slembiröð</h5>
+<table>
+<thead>
+<tr><th>Fjöldi innsetninga  </th><th style="text-align: right;">       500</th><th style="text-align: right;">      2500</th><th style="text-align: right;">     5000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré        </td><td style="text-align: right;">0.0012446 </td><td style="text-align: right;">0.00805619</td><td style="text-align: right;">0.0176823</td></tr>
+<tr><td>Hrúgutré            </td><td style="text-align: right;">0.00199833</td><td style="text-align: right;">0.0119704 </td><td style="text-align: right;">0.0259311</td></tr>
+<tr><td>Skopplisti          </td><td style="text-align: right;">0.00377574</td><td style="text-align: right;">0.0200113 </td><td style="text-align: right;">0.041654 </td></tr>
+</tbody>
+</table>
+<h5>Lyklar settir inn í <i>~hækkandi</i> röð</h5>
+<table>
+<thead>
+<tr><th>Fjöldi innsetninga  </th><th style="text-align: right;">       500</th><th style="text-align: right;">     2500</th><th style="text-align: right;">     5000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré        </td><td style="text-align: right;">0.00338873</td><td style="text-align: right;">0.0229061</td><td style="text-align: right;">0.051469 </td></tr>
+<tr><td>Hrúgutré            </td><td style="text-align: right;">0.00190274</td><td style="text-align: right;">0.0115455</td><td style="text-align: right;">0.0244053</td></tr>
+<tr><td>Skopplisti          </td><td style="text-align: right;">0.00423993</td><td style="text-align: right;">0.0228196</td><td style="text-align: right;">0.0480201</td></tr>
+</tbody>
+</table>
+<p>Það tekur rétt rúmlega tvöfalt lengri tíma að setja inn 5000 gildi en 2500 gildi í öllum tilfellum. Einnig tekur rúmlega fimmfalt lengri tíma að setja inn 2500 en 500 gildi. Þetta er eins og búast mátti við, því innsetning tekur lengri tíma eftir því sem gagnagrindirnar stækka, alltaf í hlutfalli við stærð gagnagrindanna. Það sem stendur mest út úr er að innsetning í tvíleitartré tekur u.þ.b. tvöfalt lengri tíma ef lyklarnir eru raðaðir í ~<em>hækkandi</em> röð við innsetningu. Þessar raðanir hafa lítil áhrif á skopplistann og hrúgutréið, en hið síðarnefnda virðist jafnvel græða (pínu pínu lítið) á að lyklarnir séu <strong>ekki</strong> í slembinni röð!</p>
+<p>Innsetning slembiraðaðra lykla í hrúgutréin er tekur um $33-40%$ meiri tíma en í venjulegu tvíleitartréin. Það sem veldur þessu er að það þarf að setja gildin inn sem lauf, og framkvæma snúninga í hrúgutrénu til að viðhalda hrúguskilyrðunum. Þetta gerir það að verkum að tvíleitartréið hefur lægsta innsetningartímann á lyklum í slembinni röð, sem er einmitt ummerki um að slembiröðun lyklanna fyrir innsetningu (sem tekur $O(n)$ tíma með <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates</a>) sé nóg til að gera tvíleitartréið að góðum kosti fyrir gagnagrind sem á ekki að breyta. Sér í lagi ef það heldur þessum hraða við leit, sem kemur í ljós von bráðar.</p>
+<p>Skopplistinn er hér slakastur, en hann hefur ennþá tækifæri til að sanna sig. Innsetning á litlum gildum í skopplistanum ætti hins vegar að taka skemmri tíma en innsetning á stórum gildum (því hann er raðaður í hækkandi röð), svo það hefði verið áhugavert að skoða líka innsetningartíma lykla í ~<em>lækkandi</em> röð. Það er auðvelt verkefni að smíða forrit sem prófar það út frá þessu verkefni: Í raun þarf bara að láta fallið <code>RandomVixlanir</code> beita viðsnúningsfalli á listann.</p>
+<hr>
+<h4 id="412-leitart%C3%ADmi">4.1.2 Leitartími</h4>
+<h4 id="einungis-leita%C3%B0-a%C3%B0-lyklum-sem-eru-%C3%AD-gagnagrindunum">Einungis leitað að lyklum sem eru í gagnagrindunum</h4>
+<pre class="hljs"><code><div>display(HTML(<span class="hljs-string">"&lt;h5&gt;"</span> + <span class="hljs-string">"Tafla 2: Gagnagrindur með &lt;i&gt;n&lt;/i&gt; lyklum sem voru settir inn í slembinni röð"</span> + <span class="hljs-string">"&lt;/h5&gt;"</span>))
+BirtaToflurHTML(TaflaArangursrikurLeitartimiSlembid, ns, <span class="hljs-string">"n=%d"</span>)
+</div></code></pre>
+<h5>Tafla 2: Gagnagrindur með <i>n</i> lyklum sem voru settir inn í slembinni röð</h5>
+<h5>n=500</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.206306</td><td style="text-align: right;">0.412309</td><td style="text-align: right;">0.827776</td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.23311 </td><td style="text-align: right;">0.465792</td><td style="text-align: right;">0.9359  </td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.595609</td><td style="text-align: right;">1.19045 </td><td style="text-align: right;">2.38019 </td></tr>
+</tbody>
+</table>
+<h5>n=2500</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.274757</td><td style="text-align: right;">0.548968</td><td style="text-align: right;"> 1.09607</td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.316126</td><td style="text-align: right;">0.632202</td><td style="text-align: right;"> 1.26123</td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.66026 </td><td style="text-align: right;">1.32305 </td><td style="text-align: right;"> 2.6428 </td></tr>
+</tbody>
+</table>
+<h5>n=5000</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.305942</td><td style="text-align: right;">0.611225</td><td style="text-align: right;"> 1.21871</td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.342439</td><td style="text-align: right;">0.684055</td><td style="text-align: right;"> 1.37671</td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.702961</td><td style="text-align: right;">1.40731 </td><td style="text-align: right;"> 2.81013</td></tr>
+</tbody>
+</table>
+<p>Hér sést að leit í tvíleitartré tekur minnstan tíma ef lyklarnir eru settir inn í slembinni röð. Þetta kemur lítið á óvart. Það er einmitt styrkleiki tvíleitartrésins: að aðgerðir eru fljótlegar vegna lítils innviðis. Sér í lagi er minna innviði í tvíleitartrénu en í hrúgutrénu, og hér sjáum við nefnilega áhrif þessarar einu auka aðgerðar í hverri leit í hrúgutrénu: að það þarf að gá hvort tréið sé tómt, og hefja leit frá rótinni. Sú eina aðgerð ætti þó ekki að duga til að valda þessum $10-20%$ mun. Það er möguleiki að Fisher-Yates stokkunin á inntaksgildunum dugi til að setja tvíleitartréið í ennþá betra jafnvægi en slembitölugjafinn og hrúguskilyrðin í hrúgutrénu gera fyrir hrúgutréið. Það væri áhugavert að skoða leitartíma í minni tréum, þar sem þessi eina auka aðgerð verður stærra hlutfall af heildarfjölda aðgerða í hverri leit.</p>
+<p>Hér má þá draga þá ályktun að svo framarlega sem það er vitað að gögnin verði í slembinni röð þegar þau verða sett inn, og að einungis verði leitað að lyklum sem eru í lyklasafninu, þá hentar venjulegt tvíleitartré best þessara þriggja.</p>
+<p>Hingað til þá virðist útfærsla höfunds af skopplista vera vonlaus í samanburði við hinar.</p>
+<pre class="hljs"><code><div>display(HTML(<span class="hljs-string">"&lt;h5&gt;"</span> + <span class="hljs-string">"Tafla 3: Gagnagrindur með &lt;i&gt;n&lt;/i&gt; lyklum sem voru settir inn í ~hækkandi röð"</span> + <span class="hljs-string">"&lt;/h5&gt;"</span>))
+BirtaToflurHTML(TaflaArangursrikurLeitartimiRadad, ns, <span class="hljs-string">"n=%d"</span>)
+</div></code></pre>
+<h5>Tafla 3: Gagnagrindur með <i>n</i> lyklum sem voru settir inn í ~hækkandi röð</h5>
+<h5>n=500</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.59498 </td><td style="text-align: right;">1.19147 </td><td style="text-align: right;">2.38808 </td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.232397</td><td style="text-align: right;">0.464073</td><td style="text-align: right;">0.928361</td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.604776</td><td style="text-align: right;">1.20815 </td><td style="text-align: right;">2.41456 </td></tr>
+</tbody>
+</table>
+<h5>n=2500</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.815328</td><td style="text-align: right;">1.63337 </td><td style="text-align: right;"> 3.26864</td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.305966</td><td style="text-align: right;">0.611241</td><td style="text-align: right;"> 1.22195</td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.673395</td><td style="text-align: right;">1.34918 </td><td style="text-align: right;"> 2.6988 </td></tr>
+</tbody>
+</table>
+<h5>n=5000</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.911207</td><td style="text-align: right;">1.82544 </td><td style="text-align: right;"> 3.65138</td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.336693</td><td style="text-align: right;">0.672402</td><td style="text-align: right;"> 1.34618</td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.721086</td><td style="text-align: right;">1.44344 </td><td style="text-align: right;"> 2.88886</td></tr>
+</tbody>
+</table>
+<p>Tvíleitartré eru hins vegar vonlaus þegar lyklar hafa verið settir inn í ~<em>hækkandi</em> röð, og það sannar sig á þessum mælingum. Það er meira að segja sneggra að fletta upp í skopplistum en í tvíleitartréum undir þessum kringumstæðum, að minnstu útgáfunum undanskildum. Það er eins og vænta má, því þessi tvíleitartré eru í raun í laginu eins og næstum því raðaðir beintengdir listar, með nokkrum frávikum. Skopplistinn er svo einmitt raðaður beintengdur listi, með nokkrum flýtileiðum. Hér eru því loks að koma fram kostir skopplistans fram yfir tvíleitartréið, þar sem uppflettitími í skopplistanum er lægri en hjá tvíleitartréinu fyrir $n=2500$ og $n=5000$ staka gagnagrindur.</p>
+<h4 id="helmingur-leita-er-a%C3%B0-lyklum-sem-eru-ekki-%C3%AD-gagnagrindunum">Helmingur leita er að lyklum sem eru ekki í gagnagrindunum</h4>
+<pre class="hljs"><code><div>display(HTML(<span class="hljs-string">"&lt;h5&gt;"</span> + <span class="hljs-string">"Tafla 4: Gagnagrindur með &lt;i&gt;n&lt;/i&gt; lyklum sem voru settir inn í slembinni röð."</span> + <span class="hljs-string">"&lt;/h5&gt;"</span>))
+BirtaToflurHTML(TaflaArangurslitillLeitartimiSlembid, ns, <span class="hljs-string">"n=%d"</span>)
+</div></code></pre>
+<h5>Tafla 4: Gagnagrindur með <i>n</i> lyklum sem voru settir inn í slembinni röð.</h5>
+<h5>n=500</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.216135</td><td style="text-align: right;">0.431537</td><td style="text-align: right;">0.862903</td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.243389</td><td style="text-align: right;">0.486371</td><td style="text-align: right;">0.974535</td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.606416</td><td style="text-align: right;">1.21481 </td><td style="text-align: right;">2.42702 </td></tr>
+</tbody>
+</table>
+<h5>n=2500</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.28415 </td><td style="text-align: right;">0.56707 </td><td style="text-align: right;"> 1.13385</td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.326143</td><td style="text-align: right;">0.651654</td><td style="text-align: right;"> 1.30164</td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.670044</td><td style="text-align: right;">1.34156 </td><td style="text-align: right;"> 2.68228</td></tr>
+</tbody>
+</table>
+<h5>n=5000</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.313506</td><td style="text-align: right;">0.627529</td><td style="text-align: right;"> 1.25609</td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.355265</td><td style="text-align: right;">0.7121  </td><td style="text-align: right;"> 1.42793</td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.716227</td><td style="text-align: right;">1.43114 </td><td style="text-align: right;"> 2.8603 </td></tr>
+</tbody>
+</table>
+<p>Leitartíminn er mjög svipaður hvort sem leitin bar árangur eða ekki. Þetta er sjálfsagt vegna þess að það tekur jafn langan tíma að athuga hvort t.d. lykillinn $800$ sé í gagnagrindinni, eins og $801$, hvort sem þeir eru þar eða ekki, ef gagnagrindin inniheldur oddatölur á bilinu $[1,801+]$. Hins vegar hefði skopplistinn fengið betra tækifæri til að láta ljós sitt skína ef leitað hefði verið að neikvæðum stökum (sem eru ekki í gagnagrindunum), því þar sem skopplistinn er raðaður í hækkandi röð, þá væri hann fljótur að útiloka slíkt.</p>
+<p>Tölurnar eru því skiljanlega nauðalíkar þeim í Töflu 1, almennt aðeins um $1-2%$ hærri.</p>
+<pre class="hljs"><code><div>display(HTML(<span class="hljs-string">"&lt;h5&gt;"</span> + <span class="hljs-string">"Tafla 5: Gagnagrindur með &lt;i&gt;n&lt;/i&gt; lyklum sem voru settir inn í ~hækkandi röð"</span> + <span class="hljs-string">"&lt;/h5&gt;"</span>))
+BirtaToflurHTML(TaflaArangurslitillLeitartimiRadad, ns, <span class="hljs-string">"n=%d"</span>)
+</div></code></pre>
+<h5>Tafla 5: Gagnagrindur með <i>n</i> lyklum sem voru settir inn í ~hækkandi röð</h5>
+<h5>n=500</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.613018</td><td style="text-align: right;">1.23213 </td><td style="text-align: right;">2.44826 </td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.242445</td><td style="text-align: right;">0.484673</td><td style="text-align: right;">0.969702</td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.616744</td><td style="text-align: right;">1.23401 </td><td style="text-align: right;">2.46913 </td></tr>
+</tbody>
+</table>
+<h5>n=2500</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.828604</td><td style="text-align: right;">1.66114 </td><td style="text-align: right;"> 3.32509</td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.315804</td><td style="text-align: right;">0.632272</td><td style="text-align: right;"> 1.26586</td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.68461 </td><td style="text-align: right;">1.37072 </td><td style="text-align: right;"> 2.74502</td></tr>
+</tbody>
+</table>
+<h5>n=5000</h5>
+<table>
+<thead>
+<tr><th>Fjöldi leita  </th><th style="text-align: right;">  100000</th><th style="text-align: right;">  200000</th><th style="text-align: right;">  400000</th></tr>
+</thead>
+<tbody>
+<tr><td>Tvíleitartré  </td><td style="text-align: right;">0.929417</td><td style="text-align: right;"> 1.85551</td><td style="text-align: right;"> 3.70428</td></tr>
+<tr><td>Hrúgutré      </td><td style="text-align: right;">0.347354</td><td style="text-align: right;"> 0.69438</td><td style="text-align: right;"> 1.3886 </td></tr>
+<tr><td>Skopplisti    </td><td style="text-align: right;">0.736139</td><td style="text-align: right;"> 1.46992</td><td style="text-align: right;"> 2.94107</td></tr>
+</tbody>
+</table>
+<p>Tvíleitartréið heldur áfram að standa sig illa við svona óákjósanlega röðun gilda við innsetningu. Skopplistinn er hér meira að segja orðinn vænlegri kostur fyrir litlar gagnagrindur. Hrúgutréið lætur ekkert á sig fá, og reynist vera gríðarlega áreiðanlegt, óháð röðun gilda við innsetningu eða árangurstíðni leita.</p>
+<p>Engu að síður er útkoman mjög lík þeirri í Töflu 3.</p>
+<hr>
+<h2 id="5-l%C3%ADnurit-og-frekari-t%C3%BAlkun-%C3%A1-ni%C3%B0urst%C3%B6%C3%B0um">5. Línurit og frekari túlkun á niðurstöðum</h2>
+<p>Myndræn framsetning er gagnleg til að túlka niðurstöður betur. Þar er oft auðveldara að sjá hvað er líkt og hvað er ólíkt í mælingunum.</p>
+<h5 id="a%C3%B0fer%C3%B0ir-nota%C3%B0ar-til-a%C3%B0-gera-l%C3%ADnurit-m%C3%A1-finna-%C3%AD-undirkafla-72">Aðferðir notaðar til að gera línurit má finna í undirkafla 7.2</h5>
+<p>Það er lítið áhugavert við þær aðferðir, nema að það eru teiknaðir inn á þau tveir ferlar: einn línulegur og hinn logri, til samanburðar við niðurstöður úr mælingum. Á þeim hafa einnig verið <em>kommentaðar</em> út prentskipanir sem geta nýst til að ganga úr skugga um að verið sé að teikna réttan feril.</p>
+<h3 id="51-birting-%C3%A1-l%C3%ADnuritum">5.1 Birting á línuritum</h3>
+<h4 id="511-innsetningart%C3%ADmi">5.1.1 Innsetningartími</h4>
+<pre class="hljs"><code><div>GrafInnsetningartimi(LinuheitiInnsetning,[IT[<span class="hljs-number">0</span>], IT[<span class="hljs-number">2</span>], IT[<span class="hljs-number">4</span>]],[IT[<span class="hljs-number">1</span>], IT[<span class="hljs-number">3</span>], IT[<span class="hljs-number">5</span>]], k, ns)
+</div></code></pre>
+<p><img src="output_39_0.png" alt="png"></p>
+<p>Efri svarti ferillinn er línulega fallið $f(x) = x/100.000$. Hér sést greinilega að innsetning ~<em>hækkandi</em> gilda í tvíleitartré tekur u.þ.b. línulegan tíma, eins og vænta mátti, þar sem það er næstum því í laginu eins og raðaður beintengdur listi. Skopplistinn er næstum því jafn slæmur, en innsetningartíminn í skopplistann virðist vaxa eins og $x/130.000$, en stuðullinn lækkar hallatölu línunnar. Hinir innsetningatímarnir virðast einnig vaxa línulega, en með lægri stuðul.</p>
+<p>Neðri svarti ferillinn er lografallið $g(x) = ln(x)/800$, sem virðist vaxa talsvert hægar en hinir ferlarnir. Það eru smá vonbrigði, en mögulega mætti finna logra sem vex hraðar með annari grunntölu eða öðrum stuðli. Það er ýmislegt sem getur valdið því t.d. að innsetningartíminn er í tölvu sé ekki raunverulega af stærðargráðunni $O(log(n))$. T.d. úthlutaði tölvan einungis um 30% af örgjörvaaflinu til keyrslu forritsins, og jafnvel þau 30% deilast með öðrum þráðum sem ku vera í vinnslu. Hvernig sem viðrar þá eru þræðir sem eru í keyrslu stundum svæfðir í nokkrar millisekúndur (ms) því Windows eins og fleiri stýrikerfi nota <a href="https://en.wikipedia.org/wiki/Round-robin_scheduling">Round Robin CPU Scheduling</a>, þar sem þræði er úthlutað svokallaða <em>time slice/quantum</em> sem er gjarnan 40-100ms í senn. Það þýðir að margar þessar aðgerðir voru framkvæmdar á 5 til 120 tímaskömmtum. Eins og áður var nefnt þá eru það fjöldi aðgerða við innsetningu sem er í hlutfalli við $lg(n)$, en tíminn í tölvu getur verið aðeins öðruvísi. Áhugavert væri að prófa aðrar tímamælinga aðferðir sem telja ekki með svefntíma þráða með, þó flestar heimildir hafi mælt með <code>timeit</code>.</p>
+<p>Enn fremur þá eru útfærslur gagnagrindanna eru ekki óaðfinnanlegar. Sérstaklega ekki skopplistinn.</p>
+<p>Aðal málið er þó væntanlega að hér er ekki verið að bera saman innsetningartíma í gagnagrind sem inniheldur t.d. 5000 stök við aðra sem inniheldur 2500, heldur er verið að bera saman tímann sem það tekur að setja helmingi fleiri stök í gagnagrind. Það er augljóst að það tekur u.þ.b. tvöfalt meiri tíma. Það sem væri verðugast að skoða væri mismunur tímans, sem sést þó ágætlega hér, að í engri að þessum gagnagrindum virðist taka mikið meira en tvöfalt meiri tíma að setja tvöfalt fleiri stök inn, sem þýðir að innsetningartíminn í hlutfalli við stærð gagnagrindarinnar vex lítið eftir því sem gagnagrindirnar stækka.</p>
+<hr>
+<h4 id="511-leitart%C3%ADmi-%C3%AD-hlutfalli-vi%C3%B0-fj%C3%B6lda-leita">5.1.1 Leitartími í hlutfalli við fjölda leita</h4>
+<h5 id="%C3%A1-n%C3%A6stu-sex-gr%C3%B6fum-eru-tv%C3%A6r-leitir-sko%C3%B0a%C3%B0ar-hli%C3%B0-vi%C3%B0-hli%C3%B0">Á næstu sex gröfum eru tvær leitir skoðaðar hlið við hlið:</h5>
+<h6 id="einungis-leita%C3%B0-%C3%AD-lyklum-%C3%AD-gagnagrindinni-%C3%A1rangursr%C3%ADk-leit">Einungis leitað í lyklum í gagnagrindinni Árangursrík leit</h6>
+<h6 id="helmingur-leita-a%C3%B0-lyklum-sem-eru-ekki-%C3%AD-gagnagrindunum-h%C3%A1lf-%C3%A1rangurslaus-leit">Helmingur leita að lyklum sem eru ekki í gagnagrindunum: Hálf-árangurslaus leit</h6>
+<p><img src="pics_50f/GrafLeitartimi500-0.png" alt="title">
+<img src="pics_50f/GrafLeitartimi500-3.png" alt="title">
+<img src="pics_50f/GrafLeitartimi2500-1.png" alt="title">
+<img src="pics_50f/GrafLeitartimi2500-4.png" alt="title">
+<img src="pics_50f/GrafLeitartimi5000-2.png" alt="title">
+<img src="pics_50f/GrafLeitartimi5000-5.png" alt="title"></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(k): <span class="hljs-comment"># Teiknum gröf af árangursríkri leit fyrir hvert n</span>
+    GrafLeitartimi(LinuheitiLeit, LTarangursrikurS, LTarangursrikurR, k, ms, ns,
+               <span class="hljs-string">'Árangursrík leit í %d-staka gagnagrindum'</span>,j,j)
+<span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(k): <span class="hljs-comment"># Teiknum gröf af árangurslítilli leit fyrir hvert n</span>
+    GrafLeitartimi(LinuheitiLeit, LTarangurslitillS, LTarangurslitillR, k, ms, ns,
+               <span class="hljs-string">'Hálf-árangurslaus leit í %d-staka gagnagrindum'</span>, j, k+j)
+</div></code></pre>
+<p>Hér sést enn betur að það er álíka hraðvirkt að leita í tvíleitartrjám sem upplifðu innsetningu slembiraðaðra og í hrúgutréum. Ferlar hrúgutré sem voru hlaðin með slembiröðuðum gildum (dökkrauð brotalína) sést varla á neinu grafinu, því þær eru undir ljósrauðu punktalínunum, sem tákna leitartíma í hrúgutrjám þar sem röðun lykla við innsetningu var í ~<em>hækkandi</em> röð. Þetta sýnir enn betur hvað hrúgutréið er áreiðanleg gagnagrind til að nota sem lyklasafn, því leitar- og innsetningartími virðist að mestu leiti óháður röðun lyklanna við innsetningu.</p>
+<p>Leitartíminn í skopplistunum er einnig svipaður hvernig sem röðun gilda var við innsetningu (bláu ferlarnir). Það kemur í raun ekkert annað til greina, því röðunin á neðsta raðaða listanum er ótvíræð eftir innsetningu sömu gilda, og efri listarnir ættu að vera svipað langir, þó tilvist þeirra sé ákvörðuð með slembigjafa. Engu að síður þá sést að hálf-árangurslausa leitinn (til hægri) er pínulítið hægvirkari, eins og nefnd var í kafla 4.</p>
+<p>Leitartíminn á tvíleitartrjám sést ekki á $n=500$ grafinu, vegna þess að hann er undir báðum skopplistaferlunum (ótrúlegt en satt!). Þetta má staðfesta með því að skoða gildin í Töflu 5 að ofan. Eins og sést milli grafa þá eykst leitartíminn í illa smíðuðu tvíleitartrénum mest eftir því sem gagnagrindurnar innihalda fleiri lykla. Leitartíminn í skopplistanum eykst tölulega meira en í gagnagrindum sem hafa lægri leitartíma, en er sú aukning hlutfallslega meiri miðað við leitartíma í minni lyklasöfnum? Skoðum það næst.</p>
+<hr>
+<h4 id="512-leitart%C3%ADmi-%C3%AD-hlutfalli-vi%C3%B0-st%C3%A6r%C3%B0-gagnagrindarinnar">5.1.2 Leitartími í hlutfalli við stærð gagnagrindarinnar</h4>
+<h5 id="%C3%A1-n%C3%A6stu-sex-gr%C3%B6fum-eru-sko%C3%B0a%C3%B0ar-%C3%A1rangursr%C3%ADk-og-h%C3%A1lf-%C3%A1rangurslaus-leit-hli%C3%B0-vi%C3%B0-hli%C3%B0">Á næstu sex gröfum eru skoðaðar árangursrík og hálf-árangurslaus leit hlið við hlið</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(k): <span class="hljs-comment"># Teiknum gröf af árangursríkri leit fyrir n með fast m</span>
+    GrafLeitartimi_mFast(LinuheitiLeit, LTarangursrikurS, LTarangursrikurR, k, ms, ns,
+               <span class="hljs-string">'%d árangursríkar leitir'</span>,j,<span class="hljs-number">2</span>*k+j)
+<span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(k): <span class="hljs-comment"># Teiknum gröf af árangurslítilli leit fyrir n með fast m</span>
+    GrafLeitartimi_mFast(LinuheitiLeit, LTarangurslitillS, LTarangurslitillR, k, ms, ns,
+               <span class="hljs-string">'%d hálf-árangurslausar leitir'</span>, j, <span class="hljs-number">3</span>*k+j)
+</div></code></pre>
+<p><img src="pics_50f/GrafLeitartimi0-6.png" alt="title">
+<img src="pics_50f/GrafLeitartimi0-9.png" alt="title">
+<img src="pics_50f/GrafLeitartimi1-7.png" alt="title">
+<img src="pics_50f/GrafLeitartimi1-10.png" alt="title">
+<img src="pics_50f/GrafLeitartimi2-8.png" alt="title">
+<img src="pics_50f/GrafLeitartimi2-11.png" alt="title"></p>
+<p>Frá þessu sjónarhorni sést loksins að leitartíminn eykst í lograhlutfalli við stærð gagnagrindanna. Þetta virðist gilda um allar gagnagrindurnar, þó það sé ekki gott að halda þessu fram fyrir víst nema skoðaðar væru fleiri gagnagrindur og jafnvel stærri gagnagrindur. Engu að síður þá eiga allar gagnagrindurnar það sameiginlegt að fjöldi staka í gagnagrindinni virðist hækka leitartímann lítið, eins og sást líka á milli taflna í fjórða kafla. Það mætti því vænta þess að tímamunurinn á að leita í gagnagrindum með $10.000$ lyklum og jafnvel $100.000$ lyklum taki ekki mikið lengri tíma, og að munurinn milli $400.000$ leita í gagnagrindum með $100.000$ lyklum taki álíka mikinn tíma og jafn margar leitir í gagnagrindum með $200.000$ lyklum. Til fróðleiks verður forritið keyrt með hærri gildi á $n$, sömu $m$, og <code>f</code>$=10$ og línuritin verða birt í kafla 7.5.</p>
+<p>Hér sést einnig að fjöldi staka í gagnagrindinni virðist hafa minnst jafn lítil eða minni áhrif á leitartímann í skopplistanum og í tréunum. Hins vegar Er grunnleitartíminn hærri (þ.e.a.s. leitartíminn er hár í litlum skopplistum). Það er möguleiki að gagnagrindin henti betur fyrir stærri lyklasöfn, og verður áhugavert að skoða í kafla 7.5.</p>
+<hr>
+<h2 id="6-ni%C3%B0ursta%C3%B0a-og-samantekt">6. Niðurstaða og samantekt</h2>
+<p>Það er ljóst að hrúgutréið kemur best út úr tímamælingunum í heild. Það virðist vera áreiðanlegt lyklasafn sem virkar vel undir hvers kyns kringumstæðum. Þetta sýnir að slembnar gagnagrindur geta verið ágætis kostur og sannarlega hægt að mæla með hrúgutrjám sem lyklasafn fram yfir hin tvö.</p>
+<p>Tvíleitartréið stendur sig best af þessum gagnagrindum þegar notandinn getur verið viss um að innsetningin verði slembin og að valin sé góð rót, þannig að það vaxi jafnt. Það er ljóst að aðferð eins og Fisher-Yates stokkun er nokkuð áreiðanlegar til að skapa þessi tilvik. Það væri því hægt að mæla með venjulegu tvíleitartréi sem lyklasafni sem á að smíða einu sinni og framkvæma fáar breytingar á, en aðallega nota sem uppflettirit. Hins vegar fellur tvíleitartréið aftur úr ef gildin eru sett inn í næstum því hækkandi röð, og $n/2$ víxlanir voru alls ekki nóg til að bjarga því frá því að haga sér nánast eins og í sínu versta tilfelli, en það hefði verið áhugaverður samanburður sem hægt væri að útfæra sem aukaverkefni.</p>
+<p>Það væri sannarlega áhugavert að skoða skopplistann betur. Hann fékk ekki að sína styrkleika sína, t.d. ef framkvæmdar yrðu leitir að lyklum sem eru minni en minnsti lykillinn í lyklasöfnunum, eða ef innsetning væri í lækkandi röð þá myndi skopplistinn sleppa við gríðarlega margar ítranir (nánast eins og <code>prepend</code> listavinnsuaðgerðin). Enn fremur fær hann tækifæri til að láta ljós sitt skína í viðaukanum hér að eftir. Ef hann stendur sig ekki betur þar, þá er enn og aftur möguleiki á að það séu villur í útfærslu höfunds á gagnagrindinni, t.d. að hann sé að byggja of margar hæðir of snemma. Þá mætti skoða þau til, eða minnka líkurnar á að færa hnút í efri lista með smávægilegum breytingum á aðferðinni <code>flipCoin()</code>.</p>
+<p>Í heildina litið þá var þetta áhugavert verkefni að vinna, og ánægjulegt að sjá undir lokin að leitartíminn eykst í lograhlutfalli við fjölda staka í gagnagrindinni.</p>
+<hr>
+<hr>
+<h2 id="7-fleiri-a%C3%B0ger%C3%B0ir-og-vi%C3%B0b%C3%A6tur">7. Fleiri aðgerðir og viðbætur</h2>
+<h3 id="71-a%C3%B0fer%C3%B0ir-til-a%C3%B0-sm%C3%AD%C3%B0a-og-birta-t%C3%B6flur">7.1 Aðferðir til að smíða og birta töflur</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> IPython.display <span class="hljs-keyword">import</span> HTML, display
+<span class="hljs-keyword">import</span> tabulate
+
+<span class="hljs-comment"># Skeytir línuheiti L fram fyrir hverja línu í T</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">TaflaLinuheiti</span><span class="hljs-params">(L,I)</span>:</span>
+    T = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(L)):
+        T.append(np.concatenate((np.array([L[i]]),I[i])))
+    <span class="hljs-keyword">return</span> T
+
+<span class="hljs-comment"># Býr til lista af gildum með leitartíma til að birta í töflu</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">LeitartimaToflur</span><span class="hljs-params">(L,T,ms)</span>:</span>
+    Ts = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(T[<span class="hljs-number">0</span>])):
+        Ts.append(
+            TaflaLinuheiti(L, [ms,T[<span class="hljs-number">0</span>][i],T[<span class="hljs-number">1</span>][i],T[<span class="hljs-number">2</span>][i]]))
+    <span class="hljs-keyword">return</span> Ts
+
+<span class="hljs-comment"># Birtir staka töflu sem HTML Table í Jupyter Notebook</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">BirtaTofluHTML</span><span class="hljs-params">(T,H=<span class="hljs-string">""</span>)</span>:</span>
+    display(HTML(<span class="hljs-string">"&lt;h5&gt;"</span> + H + <span class="hljs-string">"&lt;/h5&gt;"</span>))
+    display(HTML(tabulate.tabulate(T[<span class="hljs-number">1</span>:len(T)], T[<span class="hljs-number">0</span>], tablefmt=<span class="hljs-string">'html'</span>)))
+    
+<span class="hljs-comment"># Birtir lista af töflum sem HTML Table í Jupyter Notebook</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">BirtaToflurHTML</span><span class="hljs-params">(Ts,ns,H)</span>:</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(ns)):
+        BirtaTofluHTML(Ts[i],H%ns[i])
+</div></code></pre>
+<hr>
+<h3 id="72-a%C3%B0fer%C3%B0ir-til-a%C3%B0-sm%C3%AD%C3%B0a-og-birta-l%C3%ADnurit">7.2 Aðferðir til að smíða og birta línurit</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">GrafInnsetningartimi</span><span class="hljs-params">(LH,TIS, TIR, k, ns)</span>:</span>
+    figInnsetning, axisInnsetning = plt.subplots()
+    litir1 = [<span class="hljs-string">'green'</span>, <span class="hljs-string">'darkred'</span>, <span class="hljs-string">'blue'</span>]
+    litir2 = [<span class="hljs-string">'lightgreen'</span>, <span class="hljs-string">'red'</span>, <span class="hljs-string">'lightblue'</span>]
+    merki = [<span class="hljs-string">'o'</span>, <span class="hljs-string">'x'</span>, <span class="hljs-string">'^'</span>]
+    titlarB = [<span class="hljs-string">' slembiröð'</span>, <span class="hljs-string">' ~hækkandi röð'</span>] 
+    
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):
+<span class="hljs-comment">#        print('Gerum feril með y-as:', ns, ', x-as:', TIS[i], </span>
+<span class="hljs-comment">#              'merki', merki[i], 'litur', litir1[i], 'label:', LH[i+1]+titlarB[0])</span>
+        axisInnsetning.plot(ns,TIS[i],
+        marker=merki[i], linestyle=<span class="hljs-string">'--'</span>, color=litir1[i], 
+        linewidth=<span class="hljs-number">2</span>, label=LH[i+<span class="hljs-number">1</span>]+titlarB[<span class="hljs-number">0</span>])
+    
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):
+<span class="hljs-comment">#        print('Gerum feril með y-as:', ns, ', x-as:', TIR[i], </span>
+<span class="hljs-comment">#              'merki', merki[i], 'litur', litir2[i], 'label:', LH[i+1]+titlarB[1])</span>
+        axisInnsetning.plot(ns,TIR[i],
+        marker=merki[i], linestyle=<span class="hljs-string">':'</span>, color=litir2[i],
+        linewidth=<span class="hljs-number">2</span>, label=LH[i+<span class="hljs-number">1</span>]+titlarB[<span class="hljs-number">1</span>])
+    axisInnsetning.set(xlabel=<span class="hljs-string">'Fjöldi Innsetninga'</span>, 
+                    ylabel=<span class="hljs-string">'Tími (s)'</span>,
+                    title = <span class="hljs-string">'Fjöldi innsetninga á móti tíma'</span>)
+    
+    xs = np.arange(<span class="hljs-number">0</span>, <span class="hljs-number">5000</span>, <span class="hljs-number">10</span>)
+    lg = <span class="hljs-keyword">lambda</span> x: np.log1p(x)/<span class="hljs-number">800</span>
+    ys = lg(xs)
+    axisInnsetning.plot(xs, ys, color=<span class="hljs-string">'black'</span>, linewidth=<span class="hljs-number">1</span>)
+    
+    lin = <span class="hljs-keyword">lambda</span> x: x/<span class="hljs-number">100000</span>
+    ys = lin(xs)
+    axisInnsetning.plot(xs, ys, color=<span class="hljs-string">'black'</span>, linewidth=<span class="hljs-number">1</span>)
+    
+    plt.xticks(np.arange(<span class="hljs-number">0</span>, <span class="hljs-number">5500</span>, <span class="hljs-number">500</span>))
+    axisInnsetning.legend(fontsize=<span class="hljs-string">'x-small'</span>)
+    axisInnsetning.grid()
+    plt.show()
+    figInnsetning.savefig(<span class="hljs-string">'GrafInnsetningartimi.png'</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">GrafLeitartimi</span><span class="hljs-params">(LH, TS, TR, k, ms, ns, titill, j, figNumber)</span>:</span>
+    fig, axis = plt.subplots()
+    litir1 = [<span class="hljs-string">'green'</span>, <span class="hljs-string">'darkred'</span>, <span class="hljs-string">'blue'</span>]
+    litir2 = [<span class="hljs-string">'lightgreen'</span>, <span class="hljs-string">'red'</span>, <span class="hljs-string">'lightblue'</span>]
+    merki = [<span class="hljs-string">'o'</span>, <span class="hljs-string">'x'</span>, <span class="hljs-string">'^'</span>]
+    titlarB = [<span class="hljs-string">' slembiröð'</span>, <span class="hljs-string">' ~hækkandi röð'</span>] 
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):
+<span class="hljs-comment">#        print('Gerum feril með y-as:', ms, ', x-as:', TS[i][j], </span>
+<span class="hljs-comment">#              'merki', merki[i], 'litur', litir1[i], 'label:', LH[i+1]+titlarB[0])</span>
+        axis.plot(ms,TS[i][j],
+        marker=merki[i], linestyle=<span class="hljs-string">'--'</span>, color=litir1[i], 
+        linewidth=<span class="hljs-number">2</span>, label=LH[i+<span class="hljs-number">1</span>]+titlarB[<span class="hljs-number">0</span>])
+    
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):
+<span class="hljs-comment">#        print('Gerum feril með y-as:', ms, ', x-as:', TR[i][j], </span>
+<span class="hljs-comment">#              'merki', merki[i], 'litur', litir2[i], 'label:', LH[i+1]+titlarB[1])</span>
+        axis.plot(ms,TR[i][j],
+        marker=merki[i], linestyle=<span class="hljs-string">':'</span>, color=litir2[i],
+        linewidth=<span class="hljs-number">2</span>, label=LH[i+<span class="hljs-number">1</span>]+titlarB[<span class="hljs-number">1</span>])
+    axis.set(xlabel=<span class="hljs-string">'Fjöldi Leita'</span>, 
+                    ylabel=<span class="hljs-string">'Tími (s)'</span>,
+                    title = titill%ns[j])
+    
+    xs = np.arange(<span class="hljs-number">0</span>, ms[<span class="hljs-number">2</span>]+ms[<span class="hljs-number">0</span>]//<span class="hljs-number">2</span>, ms[<span class="hljs-number">0</span>]//<span class="hljs-number">2</span>)
+    lg = <span class="hljs-keyword">lambda</span> x: np.log1p(x)/<span class="hljs-number">20</span>
+    ys = lg(xs)
+    axis.plot(xs, ys, color=<span class="hljs-string">'black'</span>, linewidth=<span class="hljs-number">1</span>)
+    
+    lin = <span class="hljs-keyword">lambda</span> x: x/<span class="hljs-number">100000</span>
+    ys = lin(xs)
+    axis.plot(xs, ys, color=<span class="hljs-string">'black'</span>, linewidth=<span class="hljs-number">1</span>)
+    
+    plt.xticks(np.arange(<span class="hljs-number">0</span>, ms[<span class="hljs-number">2</span>], ms[<span class="hljs-number">0</span>]))
+    axis.legend(fontsize=<span class="hljs-string">'small'</span>)
+    axis.grid()
+    plt.show()
+    fig.savefig(<span class="hljs-string">'GrafLeitartimi%d-%d.png'</span>%(ns[j],figNumber))
+    
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">GrafLeitartimi_mFast</span><span class="hljs-params">(LH, TS, TR, k, ms, ns, titill, j, figNumber)</span>:</span>
+    fig, axis = plt.subplots()
+    litir1 = [<span class="hljs-string">'green'</span>, <span class="hljs-string">'darkred'</span>, <span class="hljs-string">'blue'</span>]
+    litir2 = [<span class="hljs-string">'lightgreen'</span>, <span class="hljs-string">'red'</span>, <span class="hljs-string">'lightblue'</span>]
+    merki = [<span class="hljs-string">'o'</span>, <span class="hljs-string">'x'</span>, <span class="hljs-string">'^'</span>]
+    titlarB = [<span class="hljs-string">' slembiröð'</span>, <span class="hljs-string">' ~hækkandi röð'</span>] 
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):
+<span class="hljs-comment">#        print('Gerum feril með y-as:', ns, ', x-as:', TS[i].T[j], </span>
+<span class="hljs-comment">#              'merki', merki[i], 'litur', litir1[i], 'label:', LH[i+1]+titlarB[0])</span>
+        axis.plot(ns,TS[i].T[j],
+        marker=merki[i], linestyle=<span class="hljs-string">'--'</span>, color=litir1[i], 
+        linewidth=<span class="hljs-number">2</span>, label=LH[i+<span class="hljs-number">1</span>]+titlarB[<span class="hljs-number">0</span>])
+    
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):
+<span class="hljs-comment">#        print('Gerum feril með y-as:', ns, ', x-as:', TR[i].T[j], </span>
+<span class="hljs-comment">#              'merki', merki[i], 'litur', litir2[i], 'label:', LH[i+1]+titlarB[1])</span>
+        axis.plot(ns,TR[i].T[j],
+        marker=merki[i], linestyle=<span class="hljs-string">':'</span>, color=litir2[i],
+        linewidth=<span class="hljs-number">1</span>, label=LH[i+<span class="hljs-number">1</span>]+titlarB[<span class="hljs-number">1</span>])
+    axis.set(xlabel=<span class="hljs-string">'Fjöldi staka í gagnagrind'</span>, 
+                    ylabel=<span class="hljs-string">'Tími (s)'</span>,
+                    title = titill%ms[j])
+    axis.legend(fontsize=<span class="hljs-string">'x-small'</span>)
+    axis.grid()
+    plt.show()
+    fig.savefig(<span class="hljs-string">'GrafLeitartimi%d-%d.png'</span>%(j,figNumber))
+</div></code></pre>
+<hr>
+<h3 id="74-meira-um-skiplist">7.4 Meira um SkipList</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># class SkipList:</span>
+<span class="hljs-comment"># ...</span>
+    <span class="hljs-string">""" prentar hvern layer af listum L í SkipList á forminu:
+        L[0].key (L[0].down.key) -&gt; L[1] (L[1].down.key)...
+    """</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">printSkipList</span><span class="hljs-params">(self)</span>:</span>
+        h = self.layers
+        SL = self.sortedLists
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(h,<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>):
+            L = SL[i]
+            v = L.head
+            l = <span class="hljs-string">''</span>
+            d = <span class="hljs-string">''</span>
+            <span class="hljs-keyword">while</span> v <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span>:
+                d = str(v.down.key) <span class="hljs-keyword">if</span> v.down <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">else</span> <span class="hljs-string">''</span>
+                l += str(v.key)  + <span class="hljs-string">' ('</span> + d + <span class="hljs-string">') '</span> + <span class="hljs-string">'-&gt; '</span>
+                v = v.right
+            print(l)
+            print(d)
+            print()
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mainSkipList</span><span class="hljs-params">()</span>:</span>
+    skiplist = SkipList()
+    
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">15</span>):
+        r = <span class="hljs-number">2</span>*i<span class="hljs-number">-1</span> <span class="hljs-comment"># random.randint(0,100)</span>
+        skiplist.insert(r)
+
+    skiplist.printSkipList()
+    
+    c=<span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">30</span>):
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> skiplist.contains(i):
+            c+=<span class="hljs-number">1</span>
+    print(c)
+</div></code></pre>
+<hr>
+<h3 style="page-break-before: always"> 7.5 Leit í stærri lyklasöfnum</h3>
+Eftirfarandi eru niðurstöður úr eins gagnagrindum, jafn mörgum leitum og áður, og lyklum dreifðum á sama máta.
+<p><img src="aukagraf0-0.png" alt="title">
+<img src="aukagraf0-3.png" alt="title">
+<img src="aukagraf1-1.png" alt="title">
+<img src="aukagraf1-4.png" alt="title">
+<img src="aukagraf2-2.png" alt="title">
+<img src="aukagraf2-5.png" alt="title"></p>
+<p>Eins og sést þá eykst leitartíminn vitaskuld, en $400.000$ leitir í gagnagrindum með $400.000$ lyklum taka einungis helmingi meiri tíma en jafn margar leitir í gagnagrindum með $5.000$ stök! Það er stórfínn árangur, og heldur áfram að benda til um að leitartími vaxi í lograhlutfalli við fjölda lykla í gagnagrindinni.</p>
+
+</body>
+</html>

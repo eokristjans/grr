@@ -105,7 +105,7 @@ def GrafLeitartimi_mFast(LH, TS, TR, k, ms, ns, titill, j, figNumber):
     axis.legend(fontsize='x-small')
     axis.grid()
     plt.show()
-    fig.savefig('GrafLeitartimi%d-%d.png'%(j,figNumber))
+    fig.savefig('aukagraf%d-%d.png'%(j,figNumber))
 
 
 
