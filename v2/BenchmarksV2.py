@@ -132,6 +132,12 @@ LT = [arangursrikurLeitartimiTreeSlembid
 , arangurslitillLeitartimiSkipListSlembid
 , arangurslitillLeitartimiSkipListRadad]
 
+# Notað í línurit
+LTarangursrikurS = [LT[0],LT[2],LT[4]]
+LTarangursrikurR = [LT[1],LT[3],LT[5]]
+LTarangurslitillS = [LT[6],LT[8],LT[10]]
+LTarangurslitillR = [LT[7],LT[9],LT[11]]
+
 # Notað fyrir heiti í töflum og gröfum
 LinuheitiInnsetning = ['Fjöldi innsetninga','Tvíleitartré','Hrúgutré','Skopplisti']
 LinuheitiLeit = ['Fjöldi leita','Tvíleitartré','Hrúgutré','Skopplisti']
@@ -160,16 +166,33 @@ display(HTML("<h5>" + "Gagnagrindur með <i>n</i> lyklum sem voru settir inn í 
 BirtaToflurHTML(TaflaArangurslitillLeitartimiRadad, ns, "<i>n=</i>%d")
 
 
-
 """"""""" Búa til línurit """""""""
 GrafInnsetningartimi(LinuheitiInnsetning,[IT[0], IT[2], IT[4]],
                     [IT[1], IT[3], IT[5]], k, ns)
-for i in range(k):
-    GrafLeitartimi(LinuheitiLeit, LT[i], LT[i+1], k, ms, ns[i],
-               'Árangursrík leit í %d-staka gagnagrindum',i)
-for i in range(k):
-    GrafLeitartimi(LinuheitiLeit, LT[2*k+i], LT[2*k+i+1], k, ms, ns[i],
-               'Hálf-árangurslaus leit í %d-staka gagnagrindum', k+i)
+for j in range(k): # Teiknum gröf af árangursríkri leit fyrir hvert n
+    GrafLeitartimi(LinuheitiLeit, LTarangursrikurS, LTarangursrikurR, k, ms, ns,
+               'Árangursrík leit í %d-staka gagnagrindum',j,j)
+for j in range(k): # Teiknum gröf af árangurslítilli leit fyrir hvert n
+    GrafLeitartimi(LinuheitiLeit, LTarangurslitillS, LTarangurslitillR, k, ms, ns,
+               'Hálf-árangurslaus leit í %d-staka gagnagrindum', j, k+j)
+
+
+
+from GraphsV2 import GrafLeitartimi_mFast
+for j in range(k): # Teiknum gröf af árangursríkri leit fyrir n með fast m
+    GrafLeitartimi_mFast(LinuheitiLeit, LTarangursrikurS, LTarangursrikurR, k, ms, ns,
+               '%d árangursríkar leitir',j,2*k+j)
+for j in range(k): # Teiknum gröf af árangurslítilli leit fyrir n með fast m
+    GrafLeitartimi_mFast(LinuheitiLeit, LTarangurslitillS, LTarangurslitillR, k, ms, ns,
+               '%d hálf-árangurslausar leitir', j, 3*k+j)
+
+
+from GraphsV2 import GrafLeitartimi_mFast
+GrafLeitartimi_mFast(LinuheitiLeit, LTarangursrikurS, LTarangursrikurR, k, ms[2], ns,
+               '%d árangursríkar leitir',ms[2])
+
+
+print(LTarangursrikurS[0].T[2])
 
 
 
@@ -188,26 +211,3 @@ import pickle
 with open('50f.pickle', 'rb') as f:
     IT, LT, LinuheitiInnsetning, LinuheitiLeit, ns, ms, k = pickle.load(f)
 """
-
-
-
-"""
-Notuðum `timeit()` sem notar `time.perf_counter()` (`perf` fyrir _perfomance_), sem
-skilar fleytitölu og er nákvæmasti kosturinn í stuttar mælingar samkvæmt Python Docs.
-Mælingin inniheldur tímann sem líður þegar þráðurinn sefur, en það sýnir góða 
-mynd af notkun í raunveruleikanum. Þetta er svipað og að taka mismun á tveimur
-mælingum af tímanum sem hefur liðið síðan epoch, en þessi aðferð á að vera 
-nákvæmari á Windows stýrikerfum.
-"""
-
-
-"""
-https://docs.python.org/3/library/time.html#time.perf_counter
-    Vert að skoða:
-time.process_time() # telur ekki svefntíma
-time.perf_counter() # telur svefntíma með
-time.thread_time()
-"""
-
-
-
