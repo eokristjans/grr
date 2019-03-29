@@ -13,14 +13,6 @@ from fractions import Fraction as frac
 
 """ String matching """
 
-""" Checks if a given string is a palindrome """
-def isPalindrome(PP):
-    P = list(PP)
-    T = P.copy()
-    T.reverse()
-    return KMP(P,T)==0
-
-isPalindrome("abab")
 
 """ Compute Failure for KMP """
 def ComputeFailure(P):
@@ -31,9 +23,49 @@ def ComputeFailure(P):
         while j > -1 and P[i] != P[j]:
             j = F[j]
         j += 1
+    for i in range(len(F)):
+        F[i] +=1
     return F
 
-print(ComputeFailure(list("abbaabba")))
+""" Supposed to change the fail function from ComputeFailure,
+but doesn't work correctly. Use ComputeOptimizedFailure instead """
+def OptimizedFailure(P,fail):
+    m = len(fail)
+    for i in range(1,m):
+        if P[i] == P[fail[i]]:
+            print("equaled")
+            fail[i] = fail[fail[i]]
+        return fail
+
+
+""" Compute Optimized Failure for KMP """
+def ComputeOptimizedFailure(P):
+    F = []
+    j = -1
+    for i in range(len(P)):
+        if j>-1 and P[i] == P[j]:
+            F.append(F[j])
+        else:
+            F.append(j)
+        while j > -1 and P[i] != P[j]:
+            j = F[j]
+        j += 1
+    for i in range(len(F)):
+        F[i] +=1
+    return F
+
+
+l = list("abracadabra")
+f = ComputeFailure(l)
+of = ComputeOptimizedFailure(l)
+print(f1)
+
+l1 = list("aaaaaaaaaaa"*9+"b"+"aaaaaaaaaaa"*99+"b")
+f1 = ComputeFailure(l1)
+of1 = ComputeOptimizedFailure(l1)
+print(of1)
+
+
 
 
 
