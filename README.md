@@ -19,6 +19,7 @@
 Ef P(n) er fullyrðing um náttúrlega tölu n. Sýnum að eftirfarandi skilyrði eru uppfyllt:
 - Sýnum að grunntilvikið P(1) er satt.
 - G.r.f.a. P(k) sé satt og sýnum að P(k+1) er þá líka satt miðað við þrepunarforsendu.
+
 Þá er fullyrðingin P(n) sönn fyrir allar náttúrlegar tölur n.
 
 
