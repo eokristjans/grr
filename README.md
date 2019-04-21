@@ -21,9 +21,9 @@ Lögmálið um þrepun:
 
 Ef P(n) er fullyrðing um náttúrlega tölu n (hverja sem er) og eftirfarandi skilyrði eru uppfyllt:
 
-    Fullyrðingin P(1) er sönn.
+    Sýnum að grunntilvikið P(1) er satt.
 
-    Ef fullyrðingin P(n) er sönn þá er fullyrðingin P(n + 1) líka sönn.
+    G.r.f.a. P(k) sé satt og sýnum að P(k+1) er þá líka satt miðað við þrepunarforsendu.
 
 Þá er fullyrðingin P(n) sönn fyrir allar náttúrlegar tölur n.
 
